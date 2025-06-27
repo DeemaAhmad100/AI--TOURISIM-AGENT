@@ -976,3 +976,7 @@ def get_comprehensive_database_context(destination):
         return context
     except Exception as e:
         return f"DATABASE NOTE: Use fresh research as primary source (database unavailable: {e})"
+
+# Execute the main application
+if __name__ == "__main__":
+    main()
