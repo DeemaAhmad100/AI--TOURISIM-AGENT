@@ -1,0 +1,20 @@
+#!/bin/bash
+# GitHub Setup Commands
+# Replace YOUR_USERNAME with your actual GitHub username
+
+echo "🔗 Setting up GitHub remote connection..."
+echo "Replace YOUR_USERNAME in the following command with your actual GitHub username:"
+echo ""
+echo "git remote add origin https://github.com/YOUR_USERNAME/ai-travel-agent.git"
+echo ""
+echo "Then run:"
+echo "git push -u origin main"
+echo ""
+echo "📋 Complete command sequence:"
+echo "1. git remote add origin https://github.com/YOUR_USERNAME/ai-travel-agent.git"
+echo "2. git push -u origin main"
+echo ""
+echo "🎯 After creating your GitHub repository, run these commands:"
+echo "cd \"c:\\Users\\AYMAN\\AI TRAVEL AGENT (TOURISIM)\""
+echo "git remote add origin https://github.com/YOUR_USERNAME/ai-travel-agent.git"
+echo "git push -u origin main"
