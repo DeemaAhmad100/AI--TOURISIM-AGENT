@@ -1,0 +1,23 @@
+# Core AI framework and language model
+crewai>=0.1.0
+langchain>=0.2.0
+langchain-openai>=0.1.9
+langchain-community>=0.2.5
+openai>=1.0.0
+
+# Database and configuration
+supabase>=2.5.0
+python-dotenv>=1.0.0
+
+# Web search integration
+tavily-python>=0.3.0
+
+# Intent Detection and ML
+sentence-transformers>=2.2.2
+scikit-learn>=1.3.0
+numpy>=1.24.3
+pandas>=2.0.3
+
+# Additional utilities
+python-dateutil>=2.8.2
+requests>=2.31.0
