@@ -1,0 +1,26 @@
+🚀 GITHUB UPLOAD COMMANDS - COPY AND PASTE THESE EXACTLY
+================================================================
+
+STEP 1: Replace YOUR_GITHUB_USERNAME with your actual GitHub username
+STEP 2: Copy and paste these commands one by one into your terminal
+
+📝 ADD YOUR GITHUB REPOSITORY:
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/ai-travel-agent.git
+
+📤 PUSH YOUR CODE TO GITHUB:
+git push -u origin main
+
+================================================================
+🎯 EXAMPLE (Replace YOUR_GITHUB_USERNAME):
+If your GitHub username is "john_doe", then use:
+git remote add origin https://github.com/john_doe/ai-travel-agent.git
+git push -u origin main
+
+================================================================
+✅ AFTER SUCCESSFUL UPLOAD:
+Your repository will be available at:
+https://github.com/YOUR_GITHUB_USERNAME/ai-travel-agent
+
+📤 TO SHARE WITH YOUR AI COPILOT:
+Send this link: https://github.com/YOUR_GITHUB_USERNAME/ai-travel-agent
+================================================================

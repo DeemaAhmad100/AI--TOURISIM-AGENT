@@ -1,0 +1,23 @@
+🚀 FINAL GITHUB UPLOAD COMMANDS
+
+After creating your GitHub repository, run these commands:
+
+STEP 1: Add GitHub remote connection
+Replace YOUR_USERNAME with your actual GitHub username:
+
+git remote add origin https://github.com/YOUR_USERNAME/ai-travel-agent.git
+
+STEP 2: Push your code to GitHub
+
+git push -u origin main
+
+EXAMPLE (replace ayman123 with your username):
+git remote add origin https://github.com/ayman123/ai-travel-agent.git
+git push -u origin main
+
+🎯 COMPLETE COMMAND SEQUENCE:
+cd "c:\Users\AYMAN\AI TRAVEL AGENT (TOURISIM)"
+git remote add origin https://github.com/YOUR_USERNAME/ai-travel-agent.git
+git push -u origin main
+
+⚠️ IMPORTANT: Replace YOUR_USERNAME with your actual GitHub username!

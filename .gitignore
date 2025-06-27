@@ -1,3 +1,15 @@
+# Environment variables - NEVER COMMIT THESE!
+.env
+.env_new
+.env.local
+.env.production
+.env.staging
+
+# API Keys and sensitive data
+**/config/keys.json
+**/secrets/
+**/.secrets
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
