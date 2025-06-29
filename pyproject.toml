@@ -1,0 +1,164 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-travel-platform"
+version = "2.0.0"
+description = "Intelligent AI-powered travel planning platform with multi-agent architecture"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Travel Platform Team", email = "contact@example.com"}
+]
+maintainers = [
+    {name = "AI Travel Platform Team", email = "contact@example.com"}
+]
+keywords = [
+    "travel", "ai", "planning", "crewai", "agents", "tourism", 
+    "itinerary", "destinations", "booking", "recommendations"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Office/Business :: Scheduling",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "crewai>=0.1.0",
+    "streamlit>=1.28.0",
+    "supabase>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "pandas>=2.0.0",
+    "plotly>=5.17.0",
+    "reportlab>=4.0.0",
+    "python-dateutil>=2.8.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.4.0",
+]
+test = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "pytest-asyncio>=0.21.0",
+]
+docs = [
+    "sphinx>=7.1.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "myst-parser>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT"
+Documentation = "https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT#readme"
+Repository = "https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT.git"
+"Bug Tracker" = "https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT/issues"
+Changelog = "https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT/blob/main/CHANGELOG.md"
+
+[project.scripts]
+travel-agent = "main_app:main"
+travel-demo = "quick_demo:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["enhanced_features*", "booking_system*", "tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["enhanced_features", "booking_system"]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/__pycache__/*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "crewai.*",
+    "supabase.*",
+    "streamlit.*",
+    "plotly.*",
+    "reportlab.*",
+]
+ignore_missing_imports = true
