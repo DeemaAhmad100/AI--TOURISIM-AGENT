@@ -1,6 +1,6 @@
 # Core AI framework and language model
 crewai>=0.1.0
-langchain>=0.2.0
+langchain==0.1.16
 langchain-openai>=0.1.9
 langchain-community>=0.2.5
 openai>=1.0.0
