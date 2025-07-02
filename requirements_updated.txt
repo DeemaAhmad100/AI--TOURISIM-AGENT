@@ -7,7 +7,6 @@ langchain>=0.3.26
 langchain-openai>=0.3.27
 langchain-community>=0.3.26
 langchain-core>=0.3.67
-langchain-text-splitters>=0.3.8
 openai>=1.93.0
 
 # Database and configuration
@@ -27,7 +26,6 @@ pandas>=2.0.3
 streamlit>=1.40.0
 fastapi>=0.115.14
 uvicorn>=0.35.0
-starlette>=0.47.1
 
 # Additional utilities
 python-dateutil>=2.8.2
@@ -35,46 +33,24 @@ requests>=2.31.0
 rich>=14.0.0
 pydantic>=2.10.0
 pydantic-settings>=2.10.1
-pydantic-core>=2.35.2
 
 # PDF Generation (for travel guides)
 reportlab>=4.0.0
 pillow>=11.3.0
 
-# Payment Processing
+# Payment Processing (optional)
 stripe>=12.3.0
 
 # HTTP and Async
 httpx>=0.27.0
 aiohttp>=3.9.0
-httpx-sse>=0.4.1
 
 # Data Processing
 plotly>=5.17.0
 matplotlib>=3.8.0
 
-# Additional Dependencies
-grpcio>=1.73.1
-protobuf>=6.31.1
-urllib3>=2.5.0
-cryptography>=45.0.5
-marshmallow>=4.0.0
-multidict>=6.6.3
-packaging>=25.0
-setuptools>=80.9.0
-tokenizers>=0.21.2
-
 # Development and Testing
-instructor>=1.9.0
-jiter>=0.10.0
-json_repair>=0.47.6
-langsmith>=0.4.4
-litellm>=1.73.6
-narwhals>=1.45.0
-oauthlib>=3.3.1
-posthog>=6.0.1
-pygments>=2.19.2
-realtime>=2.5.3
-rpds-py>=0.26.0
-huggingface-hub>=0.33.2
-chromadb>=1.0.13
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+black>=24.0.0
+isort>=5.13.0
