@@ -187,87 +187,10 @@ def search_safety_info(destination: str) -> str:
     query = f"{destination} travel safety information advisories security tips safe areas"
     return search_travel_information(query)
 
-@tool
-def generate_intelligent_itinerary(destination: str, duration: int, preferences: dict, budget: str) -> dict:
-    """
-    Generate intelligent itinerary using advanced AI systems.
-    
-    Args:
-        destination (str): Travel destination
-        duration (int): Trip duration in days
-        preferences (dict): Traveler preferences and interests
-        budget (str): Budget level
-        
-    Returns:
-        dict: Intelligent itinerary structure
-    """
-    try:
-        # This would integrate with the intelligent itinerary engine
-        base_structure = {
-            "destination": destination,
-            "duration_days": duration,
-            "budget_level": budget,
-            "traveler_profile": preferences,
-            "daily_plans": [],
-            "contingency_plans": [],
-            "cultural_progression": {
-                "day_1": "Cultural foundation and orientation",
-                "progression": "Daily deepening of cultural understanding",
-                "outcome": "Transformation from tourist to cultural participant"
-            }
-        }
-        
-        # Generate daily structure
-        for day in range(1, duration + 1):
-            daily_plan = {
-                "day": day,
-                "theme": f"Day {day} Cultural Focus",
-                "morning": {"time": "07:00-12:00", "activities": []},
-                "afternoon": {"time": "12:00-17:00", "activities": []},
-                "evening": {"time": "17:00-21:00", "activities": []},
-                "alternatives": [],
-                "learning_objectives": [],
-                "cultural_progression": ""
-            }
-            base_structure["daily_plans"].append(daily_plan)
-        
-        return base_structure
-        
-    except Exception as e:
-        return {"error": f"Failed to generate intelligent itinerary: {str(e)}"}
-
-@tool
-def get_contextual_activities(destination: str, criteria: dict) -> list:
-    """
-    Get contextually relevant activities based on intelligent criteria.
-    
-    Args:
-        destination (str): Travel destination
-        criteria (dict): Activity selection criteria
-        
-    Returns:
-        list: Contextually relevant activities
-    """
-    try:
-        # This would integrate with the dynamic activity database
-        sample_activities = [
-            {
-                "name": f"Authentic {destination} Cultural Experience",
-                "category": "cultural",
-                "duration": "2-3 hours",
-                "cost_range": criteria.get("budget", "moderate"),
-                "authenticity": "high",
-                "cultural_significance": "significant",
-                "insider_tips": ["Best time is early morning", "Bring small gifts", "Learn basic greetings"],
-                "best_time": "09:00-11:00",
-                "weather_notes": "Indoor activity with outdoor components"
-            }
-        ]
-        
-        return sample_activities[:5]  # Return top 5
-        
-    except Exception as e:
-        return [{"error": f"Failed to get activities: {str(e)}"}]
+# REMOVED REDUNDANT BASIC TOOLS:
+# - generate_intelligent_itinerary (replaced by enhanced version)
+# - get_contextual_activities (replaced by enhanced version)
+# These tools have been replaced by their enhanced counterparts with superior AI capabilities
 
 # Tool Collections
 def get_basic_travel_tools():
@@ -287,10 +210,21 @@ def get_basic_travel_tools():
 
 def get_enhanced_ai_tools():
     """Get enhanced AI-powered tools"""
-    return [
-        generate_intelligent_itinerary,
-        get_contextual_activities
-    ]
+    # Import enhanced tools from enhanced_features
+    try:
+        from enhanced_features.enhanced_travel_agent import (
+            generate_itinerary, 
+            search_activities as enhanced_search_activities, 
+            get_weather_alternatives
+        )
+        return [
+            generate_itinerary,
+            enhanced_search_activities,
+            get_weather_alternatives
+        ]
+    except ImportError:
+        print("⚠️ Enhanced AI tools not available")
+        return []
 
 def get_all_tools():
     """Get all available tools"""

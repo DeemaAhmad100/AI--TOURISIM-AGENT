@@ -14,8 +14,6 @@ from .travel_tools import (
     search_budget_tips,
     search_transportation,
     search_safety_info,
-    generate_intelligent_itinerary,
-    get_contextual_activities,
     get_basic_travel_tools,
     get_enhanced_ai_tools,
     get_all_tools
@@ -32,8 +30,6 @@ __all__ = [
     "search_budget_tips",
     "search_transportation",
     "search_safety_info",
-    "generate_intelligent_itinerary",
-    "get_contextual_activities",
     "get_basic_travel_tools",
     "get_enhanced_ai_tools",
     "get_all_tools"

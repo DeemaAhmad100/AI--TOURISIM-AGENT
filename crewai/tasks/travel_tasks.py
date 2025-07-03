@@ -138,7 +138,7 @@ def create_enhanced_travel_tasks(destination: str, travel_dates: str, duration_d
         description=f"""Create revolutionary intelligent itinerary using advanced AI systems.
         
         Intelligence Requirements:
-        - Use generate_intelligent_itinerary tool
+        - Use generate_itinerary tool
         - Apply contextual activity selection
         - Implement progressive cultural immersion
         - Design anti-repetition protocols

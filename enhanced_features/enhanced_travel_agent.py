@@ -45,7 +45,7 @@ if ENHANCED_INTELLIGENCE_AVAILABLE:
     activity_database = DynamicActivityDatabase()
 
 @tool
-def generate_intelligent_itinerary_tool(destination: str, duration: int, preferences: dict, budget: str) -> dict:
+def generate_itinerary(destination: str, duration: int, preferences: dict, budget: str) -> dict:
     """
     Generate truly intelligent, dynamic itinerary using advanced AI systems
     """
@@ -78,7 +78,7 @@ def generate_intelligent_itinerary_tool(destination: str, duration: int, prefere
         return {"error": f"Failed to generate intelligent itinerary: {str(e)}"}
 
 @tool
-def get_contextual_activities_tool(destination: str, criteria: dict) -> list:
+def search_activities(destination: str, criteria: dict) -> list:
     """
     Get contextually relevant activities based on intelligent criteria
     """
@@ -105,7 +105,7 @@ def get_contextual_activities_tool(destination: str, criteria: dict) -> list:
         return [{"error": f"Failed to get activities: {str(e)}"}]
 
 @tool
-def get_weather_alternatives_tool(destination: str, original_activities: list, weather: str) -> list:
+def get_weather_alternatives(destination: str, original_activities: list, weather: str) -> list:
     """
     Get weather-appropriate alternative activities
     """
@@ -161,7 +161,7 @@ enhanced_itinerary_architect = Agent(
     You don't just create schedules - you architect transformative journeys that feel effortlessly intelligent.""",
     verbose=True,
     llm=llm,
-    tools=[generate_intelligent_itinerary_tool, get_contextual_activities_tool, get_weather_alternatives_tool]
+    tools=[generate_itinerary, search_activities, get_weather_alternatives]
 )
 
 enhanced_experience_curator = Agent(
@@ -189,7 +189,7 @@ enhanced_experience_curator = Agent(
     You create experiences that locals would appreciate and that transform travelers into temporary cultural participants.""",
     verbose=True,
     llm=llm,
-    tools=[get_contextual_activities_tool, get_weather_alternatives_tool]
+    tools=[search_activities, get_weather_alternatives]
 )
 
 def create_enhanced_travel_tasks(destination: str, 
@@ -211,9 +211,9 @@ def create_enhanced_travel_tasks(destination: str,
         - Travel Dates: {travel_dates}
         
         **Advanced Intelligence Integration:**
-        1. Use generate_intelligent_itinerary_tool to create the base intelligent structure
-        2. Use get_contextual_activities_tool to enhance with real activity intelligence
-        3. Use get_weather_alternatives_tool to add adaptive weather planning
+        1. Use generate_itinerary to create the base intelligent structure
+        2. Use search_activities to enhance with real activity intelligence
+        3. Use get_weather_alternatives to add adaptive weather planning
         
         **Dynamic Intelligence Features Required:**
         
@@ -304,7 +304,7 @@ def create_enhanced_travel_tasks(destination: str,
         🎯 ENHANCED EXPERIENCE CURATION:
         
         **Cultural Intelligence Integration:**
-        - Use get_contextual_activities_tool with criteria:
+        - Use search_activities with criteria:
           - authenticity_min: 2 (mixed to local experiences preferred)
           - categories: based on traveler preferences {preferences}
           - budget_max: appropriate for {budget} budget
