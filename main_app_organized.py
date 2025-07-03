@@ -16,10 +16,10 @@ sys.path.append(str(project_root))
 
 # Import from organized structure
 try:
-    from crewai.agents import get_all_agents, get_all_basic_agents, get_all_enhanced_agents
-    from crewai.tools import get_all_tools, get_basic_travel_tools
-    from crewai.crews import create_basic_travel_crew, create_enhanced_travel_crew
-    from crewai.workflows import run_basic_workflow, run_enhanced_workflow, WorkflowFactory
+    from local_crewai.agents import get_all_agents, get_all_basic_agents, get_all_enhanced_agents
+    from local_crewai.tools import get_all_tools, get_basic_travel_tools
+    from local_crewai.crews import create_basic_travel_crew, create_enhanced_travel_crew
+    from local_crewai.workflows import run_basic_workflow, run_enhanced_workflow, WorkflowFactory
     print("✅ Successfully imported from organized CrewAI structure!")
 except ImportError as e:
     print(f"⚠️ Import error from organized structure: {e}")
@@ -121,10 +121,10 @@ def main():
     
     print("""
 # Clean, organized imports:
-from crewai.agents import get_all_agents
-from crewai.tools import get_all_tools  
-from crewai.crews import create_enhanced_travel_crew
-from crewai.workflows import run_comprehensive_workflow
+from local_crewai.agents import get_all_agents
+from local_crewai.tools import get_all_tools  
+from local_crewai.crews import create_enhanced_travel_crew
+from local_crewai.workflows import run_comprehensive_workflow
 
 # Create a travel planning workflow:
 result = run_enhanced_workflow(
