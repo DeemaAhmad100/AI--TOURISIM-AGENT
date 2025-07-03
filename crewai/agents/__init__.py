@@ -1,36 +1,28 @@
 """
 🤖 CrewAI Agents Collection
-All travel planning and AI agents organized and ready to use
+Streamlined travel planning agents - Enhanced and optimized
 """
 
 from .travel_agents import (
-    create_travel_planner_agent,
-    create_local_expert_agent,
-    create_budget_optimizer_agent,
-    create_activity_recommender_agent,
-    create_travel_writer_agent,
-    create_enhanced_itinerary_architect,
-    create_experience_curator_agent,
-    create_personality_analysis_agent,
-    create_cultural_intelligence_agent,
-    create_seasonal_expert_agent,
+    create_itinerary_architect,
+    create_experience_curator,
+    create_cultural_specialist,
+    create_psychology_analyst,
+    create_seasonal_specialist,
+    get_all_agents,
+    # Deprecated functions kept for backwards compatibility
     get_all_basic_agents,
-    get_all_enhanced_agents,
-    get_all_agents
+    get_all_enhanced_agents
 )
 
 __all__ = [
-    "create_travel_planner_agent",
-    "create_local_expert_agent", 
-    "create_budget_optimizer_agent",
-    "create_activity_recommender_agent",
-    "create_travel_writer_agent",
-    "create_enhanced_itinerary_architect",
-    "create_experience_curator_agent",
-    "create_personality_analysis_agent",
-    "create_cultural_intelligence_agent",
-    "create_seasonal_expert_agent",
+    "create_itinerary_architect",
+    "create_experience_curator", 
+    "create_cultural_specialist",
+    "create_psychology_analyst",
+    "create_seasonal_specialist",
+    "get_all_agents",
+    # Deprecated - for backwards compatibility only
     "get_all_basic_agents",
-    "get_all_enhanced_agents",
-    "get_all_agents"
+    "get_all_enhanced_agents"
 ]

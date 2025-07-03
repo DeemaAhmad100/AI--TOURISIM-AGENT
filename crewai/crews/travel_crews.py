@@ -1,63 +1,28 @@
 """
 👥 Travel Planning Crews
-All CrewAI crew configurations for different travel planning scenarios
+Streamlined CrewAI crew configurations using enhanced agents only
 """
 
 from crewai import Crew
 from ..agents.travel_agents import (
-    get_all_basic_agents,
-    get_all_enhanced_agents,
-    create_travel_planner_agent,
-    create_local_expert_agent,
-    create_budget_optimizer_agent,
-    create_activity_recommender_agent,
-    create_travel_writer_agent,
-    create_enhanced_itinerary_architect,
-    create_experience_curator_agent
+    get_all_agents,
+    create_itinerary_architect,
+    create_experience_curator, 
+    create_cultural_specialist,
+    create_psychology_analyst,
+    create_seasonal_specialist
 )
 from ..tasks.travel_tasks import (
-    create_basic_travel_tasks,
     create_enhanced_travel_tasks,
     create_comprehensive_travel_tasks
 )
 
-def create_basic_travel_crew(destination: str, travel_dates: str, duration_days: int, 
-                           preferences: dict, budget: str):
-    """Create basic travel planning crew"""
+def create_streamlined_travel_crew(destination: str, travel_dates: str, duration_days: int, 
+                                 preferences: dict, budget: str):
+    """Create streamlined travel planning crew with enhanced agents only"""
     
-    # Get agents
-    agents = get_all_basic_agents()
-    
-    # Create tasks
-    tasks = create_basic_travel_tasks(
-        destination=destination,
-        travel_dates=travel_dates,
-        duration_days=duration_days,
-        preferences=preferences,
-        budget=budget
-    )
-    
-    # Create crew
-    crew = Crew(
-        agents=list(agents.values()),
-        tasks=tasks,
-        verbose=True,
-        memory=True,
-        planning=True
-    )
-    
-    return crew
-
-def create_enhanced_travel_crew(destination: str, travel_dates: str, duration_days: int,
-                              preferences: dict, budget: str):
-    """Create enhanced travel planning crew with AI intelligence"""
-    
-    # Get enhanced agents
-    basic_agents = get_all_basic_agents()
-    enhanced_agents = get_all_enhanced_agents()
-    
-    # Combine agents for comprehensive planning
-    all_agents = list(basic_agents.values()) + list(enhanced_agents.values())
+    # Get streamlined agents
+    agents = get_all_agents()
     
     # Create enhanced tasks
     tasks = create_enhanced_travel_tasks(
@@ -68,51 +33,34 @@ def create_enhanced_travel_crew(destination: str, travel_dates: str, duration_da
         budget=budget
     )
     
-    # Create enhanced crew
+    # Create streamlined crew
     crew = Crew(
-        agents=all_agents,
+        agents=list(agents.values()),
         tasks=tasks,
         verbose=True,
         memory=True,
-        planning=True,
-        max_execution_time=300  # 5 minutes max
+        planning=True
     )
     
     return crew
 
+# DEPRECATED: Use create_streamlined_travel_crew instead
+def create_basic_travel_crew(destination: str, travel_dates: str, duration_days: int, 
+                           preferences: dict, budget: str):
+    """DEPRECATED: Use create_streamlined_travel_crew instead"""
+    return create_streamlined_travel_crew(destination, travel_dates, duration_days, preferences, budget)
+
+# DEPRECATED: Use create_streamlined_travel_crew instead  
+def create_enhanced_travel_crew(destination: str, travel_dates: str, duration_days: int,
+                              preferences: dict, budget: str):
+    """DEPRECATED: Use create_streamlined_travel_crew instead"""
+    return create_streamlined_travel_crew(destination, travel_dates, duration_days, preferences, budget)
+
+# DEPRECATED: Use create_streamlined_travel_crew instead
 def create_comprehensive_travel_crew(destination: str, travel_dates: str, duration_days: int,
                                    preferences: dict, budget: str):
-    """Create comprehensive travel planning crew with full capabilities"""
-    
-    # Get all agents
-    all_agents = get_all_basic_agents()
-    all_agents.update(get_all_enhanced_agents())
-    
-    # Create comprehensive tasks
-    tasks = create_comprehensive_travel_tasks(
-        destination=destination,
-        travel_dates=travel_dates,
-        duration_days=duration_days,
-        preferences=preferences,
-        budget=budget
-    )
-    
-    # Create comprehensive crew
-    crew = Crew(
-        agents=list(all_agents.values()),
-        tasks=tasks,
-        verbose=True,
-        memory=True,
-        planning=True,
-        max_execution_time=600,  # 10 minutes max
-        max_rpm=10,  # Rate limiting
-        embedder={
-            "provider": "openai",
-            "config": {"model": "text-embedding-3-small"}
-        }
-    )
-    
-    return crew
+    """DEPRECATED: Use create_streamlined_travel_crew instead"""
+    return create_streamlined_travel_crew(destination, travel_dates, duration_days, preferences, budget)
 
 def create_quick_travel_crew(destination: str, preferences: dict, budget: str):
     """Create quick travel planning crew for rapid recommendations"""
