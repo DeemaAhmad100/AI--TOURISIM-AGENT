@@ -6,8 +6,8 @@
 AI TRAVEL AGENT (TOURISIM)/
 ├── 📁 src/                           # Main application source code
 │   ├── 📁 core/                      # Core application logic
-│   │   ├── main_app.py               # Main application entry point
-│   │   ├── platform_core.py          # Platform core functionality
+│   │   ├── platform_core.py          # 🎯 MAIN APPLICATION ENTRY POINT (879 lines)
+│   │   ├── main_app.py               # Architecture demo (181 lines)
 │   │   ├── enhanced_travel_platform.py # Enhanced travel platform
 │   │   ├── config.py                 # Configuration management
 │   │   └── __init__.py
