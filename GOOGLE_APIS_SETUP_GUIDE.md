@@ -64,6 +64,40 @@
    - API restrictions: Select the APIs you enabled
    - Click "Save"
 
+#### **🎯 Specific Restriction Examples**
+
+**For Development/Testing:**
+```
+Application restrictions: HTTP referrers (web sites)
+- localhost:*
+- 127.0.0.1:*
+- http://localhost:*
+- https://localhost:*
+- file://*
+```
+
+**For Production Website:**
+```
+Application restrictions: HTTP referrers (web sites)
+- yourdomain.com/*
+- *.yourdomain.com/*
+- https://yourdomain.com/*
+```
+
+**For Server/Backend Use:**
+```
+Application restrictions: IP addresses (web servers, cron jobs, etc.)
+- Your server IP address
+- 0.0.0.0/0 (for testing only - remove in production)
+```
+
+**API Restrictions (Select only what you need):**
+- ✅ Maps JavaScript API
+- ✅ Places API
+- ✅ Calendar API  
+- ✅ Geocoding API
+- ❌ Uncheck all others
+
 ### **4. Billing Setup (Required)**
 
 ⚠️ **Important: Google requires billing to be enabled**
