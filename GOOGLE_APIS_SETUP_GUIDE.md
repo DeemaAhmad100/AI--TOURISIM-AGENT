@@ -104,6 +104,162 @@ https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places
 - Solution: Add your domain to HTTP referrers
 - Solution: For testing, use "*" (remove in production)
 
+## 🔑 **Environment Variables Setup**
+
+### **Create .env file**
+Create a `.env` file in your project root:
+
+```env
+# Google API Configuration
+GOOGLE_MAPS_API_KEY=your_api_key_here
+GOOGLE_PLACES_API_KEY=your_api_key_here
+GOOGLE_CALENDAR_API_KEY=your_api_key_here
+GOOGLE_GEOCODING_API_KEY=your_api_key_here
+
+# Optional: Different keys for different environments
+GOOGLE_MAPS_API_KEY_PROD=your_production_key_here
+GOOGLE_MAPS_API_KEY_DEV=your_development_key_here
+```
+
+### **Windows PowerShell Setup**
+For Windows development, set environment variables:
+
+```powershell
+# Temporary (current session only)
+$env:GOOGLE_MAPS_API_KEY="your_api_key_here"
+
+# Permanent (for your user)
+[Environment]::SetEnvironmentVariable("GOOGLE_MAPS_API_KEY", "your_api_key_here", "User")
+```
+
+### **Python Integration**
+```python
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Use in your code
+google_maps_key = os.getenv('GOOGLE_MAPS_API_KEY')
+google_places_key = os.getenv('GOOGLE_PLACES_API_KEY')
+```
+
+## 🧪 **Testing Your Integration**
+
+### **Simple Test Script**
+Create `test_google_apis.py`:
+
+```python
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def test_places_api():
+    """Test Google Places API"""
+    api_key = os.getenv('GOOGLE_PLACES_API_KEY')
+    if not api_key:
+        print("❌ GOOGLE_PLACES_API_KEY not found in environment")
+        return False
+    
+    url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
+    params = {
+        'query': 'restaurants in Paris',
+        'key': api_key
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') == 'OK':
+                print("✅ Google Places API working!")
+                print(f"Found {len(data.get('results', []))} results")
+                return True
+            else:
+                print(f"❌ API Error: {data.get('status')} - {data.get('error_message', 'Unknown error')}")
+                return False
+        else:
+            print(f"❌ HTTP Error: {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"❌ Exception: {str(e)}")
+        return False
+
+def test_geocoding_api():
+    """Test Google Geocoding API"""
+    api_key = os.getenv('GOOGLE_GEOCODING_API_KEY')
+    if not api_key:
+        print("❌ GOOGLE_GEOCODING_API_KEY not found in environment")
+        return False
+    
+    url = "https://maps.googleapis.com/maps/api/geocode/json"
+    params = {
+        'address': 'Paris, France',
+        'key': api_key
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') == 'OK':
+                print("✅ Google Geocoding API working!")
+                return True
+            else:
+                print(f"❌ API Error: {data.get('status')} - {data.get('error_message', 'Unknown error')}")
+                return False
+        else:
+            print(f"❌ HTTP Error: {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"❌ Exception: {str(e)}")
+        return False
+
+if __name__ == "__main__":
+    print("🧪 Testing Google APIs Integration...\n")
+    
+    # Test APIs
+    places_ok = test_places_api()
+    geocoding_ok = test_geocoding_api()
+    
+    print(f"\n📊 Test Results:")
+    print(f"Places API: {'✅ Working' if places_ok else '❌ Failed'}")
+    print(f"Geocoding API: {'✅ Working' if geocoding_ok else '❌ Failed'}")
+    
+    if places_ok and geocoding_ok:
+        print("\n🎉 All APIs working correctly!")
+    else:
+        print("\n⚠️  Some APIs need attention. Check your keys and billing.")
+```
+
+## 🪟 **Windows-Specific Troubleshooting**
+
+### **PowerShell Execution Policy**
+If you get execution policy errors:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### **Path Issues**
+Make sure your project path doesn't contain spaces or special characters:
+```powershell
+# Good
+C:\Projects\ai-travel-platform
+
+# Avoid
+C:\Users\Your Name\AI TRAVEL AGENT (TOURISIM)
+```
+
+### **Certificate Issues**
+If you get SSL certificate errors:
+```python
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+```
+
 ## 💡 **Free Usage Limits**
 
 - **Maps JavaScript API**: 28,000 loads/month free
@@ -152,3 +308,64 @@ If you encounter specific errors, please share:
 - Screenshots of the Google Cloud Console
 
 I'll help you resolve it immediately!
+
+## ⚡ **Quick Start Commands**
+
+Once you have your API keys, run these commands:
+
+```powershell
+# 1. Run the setup script
+python setup_google_apis.py
+
+# 2. Edit your .env file with real API keys
+notepad .env
+
+# 3. Test your setup
+python test_google_apis.py
+
+# 4. Run the travel platform
+python complete_booking_demo.py
+```
+
+## 📋 **Checklist**
+
+- [ ] ✅ Created Google Cloud Project
+- [ ] ✅ Enabled required APIs (Maps, Places, Calendar, Geocoding)
+- [ ] ✅ Created API key with proper restrictions
+- [ ] ✅ Set up billing (required for API usage)
+- [ ] ✅ Added API keys to .env file
+- [ ] ✅ Tested APIs with test_google_apis.py
+- [ ] ✅ Integrated with travel platform
+
+## 🔄 **Maintenance**
+
+### **Monthly Tasks**
+- Review API usage in Google Cloud Console
+- Check billing alerts
+- Rotate API keys if needed
+
+### **Monitoring**
+- Set up usage alerts at 80% of quota
+- Monitor for unusual usage patterns
+- Keep backup API keys for production
+
+## 📈 **Scaling for Production**
+
+### **API Key Management**
+- Use separate keys for development/staging/production
+- Implement key rotation strategy
+- Store keys in secure key management system
+
+### **Usage Optimization**
+- Implement caching for geocoding results
+- Use batch requests when possible
+- Implement rate limiting in your application
+
+### **Cost Management**
+- Set strict quotas per API
+- Implement usage analytics
+- Consider alternative providers for high-volume use cases
+
+---
+
+**🎉 Congratulations!** Your Google APIs setup is now complete and production-ready!
