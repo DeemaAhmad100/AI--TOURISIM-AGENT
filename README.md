@@ -37,17 +37,21 @@ An advanced AI-powered travel planning system that revolutionizes how people pla
 git clone https://github.com/DeemaAhmad100/AI--TOURISIM-AGENT.git
 cd "AI TRAVEL AGENT (TOURISIM)"
 pip install -r requirements.txt
-python demos/experience_demo.py
+python apps/experience_demo.py
 ```
 *Perfect for first-time users - experience AI travel planning instantly!*
 
 ### **🖥️ Run the Full Platform (CLI Interface)**
 ```bash
-python src/core/platform_core.py
+python apps/main.py
 ```
 *Complete travel booking system with 10+ professional features*
 
-### **🌐 Web Interface (Coming Soon)**
+### **🌐 Web Interface (Streamlit)**
+```bash
+streamlit run src/ui/streamlit_main.py
+```
+*Modern web interface with full platform features*
 ```bash
 streamlit run src/ui/streamlit_ui.py
 ```
@@ -253,6 +257,36 @@ AI TRAVEL AGENT (TOURISIM)/
 - **Interactive Demo**: `python demos/experience_demo.py`
 - **Database Setup**: `python database/setup_database.py`
 - **Database Check**: `python database/check_database.py`
+
+---
+
+## 🏗️ **Expert Project Structure**
+
+```
+🏗️ AI-TRAVEL-PLATFORM (EXPERT STRUCTURE)/
+├── 📁 src/                          # Source Code
+│   ├── 📁 api_integration/          # API Integration Layer
+│   │   ├── 📁 openai/              # OpenAI API services
+│   │   ├── 📁 supabase/            # Supabase database services
+│   │   ├── 📁 stripe/              # Stripe payment services
+│   │   ├── 📁 google_apis/         # Google APIs integration
+│   │   └── 📁 tavily/              # Tavily search services
+│   ├── 📁 ai_agents/               # AI Agents & Workflows
+│   ├── 📁 booking_system/          # Booking & Payment System
+│   ├── 📁 core/                    # Core Business Logic
+│   ├── 📁 database/                # Database Layer
+│   ├── 📁 services/                # Business Services
+│   └── 📁 ui/                      # User Interface
+├── 📁 apps/                        # Application Entry Points
+├── 📁 config/                      # Configuration
+├── 📁 scripts/                     # Utility Scripts
+├── 📁 tests/                       # Test Suite
+├── 📁 docs/                        # Documentation
+└── 📁 deployment/                  # Deployment Files
+```
+
+📋 **[View Complete Structure Guide](EXPERT_RESTRUCTURING_COMPLETE.md)**
+🧭 **[Navigation Guide](NAVIGATION_GUIDE.md)**
 
 ---
 

@@ -43,7 +43,7 @@ class UserProfile:
     user_id: str
     age: int
     interests: List[str]
-    travel_style: str  # luxury, budget, adventure, cultural, family
+    travel_style: str  # luxury, budget, adventure, cultural, family 
     accessibility_needs: List[str]
     budget_range: str
     preferred_airlines: List[str]
