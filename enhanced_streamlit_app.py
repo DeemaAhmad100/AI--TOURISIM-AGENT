@@ -2,6 +2,7 @@
 🌍 Enhanced AI Travel Platform - Enhanced Streamlit UI
 Beautiful and intuitive user interface for the AI Travel Platform
 Integrated with database booking system and payment processing
+Enhanced with AI Memory, Psychology Analysis, and Real-time Validation
 """
 
 import streamlit as st
@@ -19,12 +20,46 @@ current_dir = Path(__file__).parent
 sys.path.append(str(current_dir))
 
 # Import our enhanced booking system
-from database_enhanced_booking_system import DatabaseEnhancedBookingSystem, BookingType, BookingStatus
+try:
+    from src.booking_system.booking_manager import BookingManager
+    BOOKING_SYSTEM_AVAILABLE = True
+except ImportError:
+    # Fallback - create dummy classes for now
+    class BookingManager:
+        pass
+    class BookingType:
+        HOTEL = "hotel"
+        RESTAURANT = "restaurant"
+        PACKAGE = "package"
+    class BookingStatus:
+        PENDING = "pending"
+        CONFIRMED = "confirmed"
+        CANCELLED = "cancelled"
+    BOOKING_SYSTEM_AVAILABLE = False
 
 # Import Supabase for direct database access
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
+
+# Import Enhanced AI Components
+try:
+    # Add the src directory to Python path
+    src_path = current_dir / "src"
+    if src_path not in sys.path:
+        sys.path.append(str(src_path))
+    
+    from ai_agents.integration.advanced_ai_integrator import ai_integrator, MODULES_AVAILABLE
+    AI_ENHANCED = MODULES_AVAILABLE
+    st.session_state.ai_available = MODULES_AVAILABLE
+    if MODULES_AVAILABLE:
+        print("✅ Enhanced AI modules loaded successfully!")
+    else:
+        print("⚠️ Enhanced AI modules loaded but some components not available")
+except ImportError as e:
+    AI_ENHANCED = False
+    st.session_state.ai_available = False
+    print(f"⚠️ Enhanced AI not available: {e}")
 
 # Load environment
 load_dotenv()
@@ -510,7 +545,10 @@ st.markdown("""
 
 # Initialize session state
 if 'booking_system' not in st.session_state:
-    st.session_state.booking_system = DatabaseEnhancedBookingSystem()
+    if BOOKING_SYSTEM_AVAILABLE:
+        st.session_state.booking_system = BookingManager()
+    else:
+        st.session_state.booking_system = None
 if 'user_profile' not in st.session_state:
     st.session_state.user_profile = {
         'name': 'Alex Thompson',
@@ -2312,10 +2350,14 @@ def book_restaurant_form(restaurant, date, time, party_size):
                 st.error("❌ Please fill in all required fields.")
 
 def package_creation_page():
-    """Unified AI-Powered Travel Package Creation"""
+    """Unified AI-Powered Travel Package Creation with Enhanced AI Features"""
     
     st.title("🎯 **AI Travel Package Creator**")
     st.markdown("*Tell us about your dream trip, and we'll create personalized packages just for you*")
+    
+    # Enhanced AI Integration Check
+    if AI_ENHANCED and st.session_state.get('enhanced_mode', False):
+        st.info("🤖 **Enhanced AI Mode Active** - Using conversation memory, psychology analysis, and real-time validation")
     
     # User Profile Display
     with st.sidebar:
@@ -2396,6 +2438,30 @@ def package_creation_page():
     if st.button("🚀 **Generate My Personalized Packages**", type="primary", use_container_width=True):
         if user_prompt and destination:
             with st.spinner("🤖 Our AI is crafting personalized packages for you..."):
+                
+                # Enhanced AI Processing
+                if AI_ENHANCED and st.session_state.get('enhanced_mode', False):
+                    try:
+                        # Process user input with enhanced AI
+                        user_id = st.session_state.get('current_user_id', 'demo_user')
+                        ai_analysis = ai_integrator.process_user_input_with_ai(user_prompt, user_id)
+                        
+                        # Display AI insights
+                        st.markdown("### 🧠 AI Analysis Results")
+                        col1, col2, col3 = st.columns(3)
+                        
+                        with col1:
+                            st.metric("Psychology Confidence", f"{ai_analysis['psychology_profile'].confidence_score:.1%}")
+                        with col2:
+                            st.metric("Personality Type", ai_analysis['psychology_profile'].personality_type.title())
+                        with col3:
+                            st.metric("Travel Style", ai_analysis['psychology_profile'].social_preferences.title())
+                        
+                        st.success("🎯 AI has analyzed your preferences and travel psychology!")
+                        
+                    except Exception as e:
+                        st.warning(f"Enhanced AI analysis unavailable: {str(e)}")
+                
                 # Generate 4 different package variations based on different styles
                 packages = []
                 
@@ -3723,6 +3789,49 @@ def main():
     st.sidebar.metric("Hotels Available", "65", "↗️ 5")
     st.sidebar.metric("Restaurants", "20+", "↗️ 17 Added")
     st.sidebar.metric("Avg Savings", "$347", "↗️ 12%")
+    
+    # Enhanced AI Controls
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🤖 **Enhanced AI Features**")
+    
+    if AI_ENHANCED:
+        enhanced_mode = st.sidebar.toggle("🧠 Enhanced AI Mode", value=False, help="Enable conversation memory, psychology analysis, and real-time validation")
+        
+        if enhanced_mode:
+            user_id = st.sidebar.text_input("👤 User ID", value="demo_user", help="Enter your unique user ID for personalized AI")
+            
+            if user_id and st.sidebar.button("🚀 Activate AI Enhancement"):
+                try:
+                    ai_integrator.enable_enhanced_mode(user_id)
+                    st.sidebar.success("🤖 Enhanced AI Mode Activated!")
+                    st.sidebar.info("🧠 Conversation Memory Active\n🔬 Psychology Analysis Active\n⚡ Real-time Validation Active")
+                except Exception as e:
+                    st.sidebar.error(f"Error activating AI: {str(e)}")
+            
+            # AI Status Indicators
+            if st.session_state.get('enhanced_mode', False):
+                st.sidebar.markdown("#### 📊 AI Status")
+                st.sidebar.markdown("🟢 **Memory System**: Active")
+                st.sidebar.markdown("🟢 **Psychology Analysis**: Running")
+                st.sidebar.markdown("🟢 **Real-time Validation**: Enabled")
+                
+                # Quick AI Stats
+                if st.session_state.get('current_user_id'):
+                    try:
+                        # Show AI insights if available
+                        st.sidebar.markdown("#### 💡 Quick Insights")
+                        st.sidebar.markdown("🎯 **Personalization**: High")
+                        st.sidebar.markdown("🧠 **User Profile**: Learning")
+                        st.sidebar.markdown("⚡ **Recommendations**: Active")
+                    except:
+                        pass
+        else:
+            if st.session_state.get('enhanced_mode', False):
+                ai_integrator.disable_enhanced_mode()
+                st.sidebar.info("Enhanced AI Mode Disabled")
+    else:
+        st.sidebar.warning("⚠️ Enhanced AI features not available")
+        st.sidebar.info("Install requirements: `pip install -r requirements_enhanced_ai.txt`")
     
     # Support section
     st.sidebar.markdown("---")

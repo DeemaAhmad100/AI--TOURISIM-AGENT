@@ -1,0 +1,74 @@
+# Enhanced AI Travel Platform Requirements
+# Core dependencies for advanced conversation memory, psychology analysis, and real-time validation
+
+# === Core Framework Dependencies ===
+streamlit>=1.28.0
+crewai>=0.41.1
+langchain>=0.1.0
+langchain-openai>=0.0.5
+
+# === Database & Storage ===
+# sqlite3 is built into Python - no installation needed
+sqlalchemy>=2.0.0
+
+# === Advanced NLP & Psychology Analysis ===
+spacy>=3.7.0
+textblob>=0.17.1
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# === Data Processing & Analysis ===
+nltk>=3.8
+vaderSentiment>=3.3.2
+
+# === PDF Generation ===
+reportlab>=4.0.0
+
+# === API Integrations ===
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# === Date & Time Handling ===
+python-dateutil>=2.8.2
+
+# === JSON & Data Validation ===
+pydantic>=2.0.0
+jsonschema>=4.17.0
+
+# === Enhanced UI Components ===
+plotly>=5.17.0
+altair>=5.0.0
+
+# === Development & Testing ===
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+
+# === Optional: Advanced ML (for future enhancements) ===
+# torch>=2.0.0  # Uncomment for deep learning features
+# transformers>=4.30.0  # Uncomment for advanced NLP models
+# sentence-transformers>=2.2.0  # Uncomment for semantic similarity
+
+# === Installation Instructions ===
+# 
+# 1. Install core dependencies:
+#    pip install -r requirements_enhanced_ai.txt
+#
+# 2. Download spaCy language model:
+#    python -m spacy download en_core_web_sm
+#
+# 3. Download NLTK data (run in Python):
+#    import nltk
+#    nltk.download('vader_lexicon')
+#    nltk.download('punkt')
+#    nltk.download('stopwords')
+#
+# 4. Set up environment variables in .env file:
+#    OPENAI_API_KEY=your_openai_key
+#    DATABASE_URL=sqlite:///travel_agent.db
+#
+# === System Requirements ===
+# Python 3.8+
+# RAM: 4GB minimum, 8GB recommended
+# Storage: 2GB for dependencies and models
