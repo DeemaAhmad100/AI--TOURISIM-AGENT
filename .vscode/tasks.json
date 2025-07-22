@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Streamlit App",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"streamlit",
+				"run",
+				"enhanced_streamlit_app.py",
+				"--server.port",
+				"8501"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
