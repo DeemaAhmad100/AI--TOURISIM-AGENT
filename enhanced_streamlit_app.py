@@ -1362,10 +1362,20 @@ def generate_database_driven_itinerary(destination, duration, profile, user_prom
     # Create day-specific themes with intelligent variation
     daily_themes = generate_progressive_daily_themes(destination, duration, user_interests, package_style)
     
+    # Safety check: ensure we have enough themes
+    if len(daily_themes) < duration:
+        # Extend themes if needed
+        while len(daily_themes) < duration:
+            daily_themes.append(f"Day {len(daily_themes) + 1}: Exploration & Discovery")
+    
     for day in range(1, duration + 1):
+        # Safety check for theme index
+        theme_index = min(day - 1, len(daily_themes) - 1)
+        current_theme = daily_themes[theme_index] if daily_themes else f"Day {day}: Discovery"
+        
         day_plan = generate_hyper_personalized_day(
             day, duration, destination, destination_info, 
-            activities_from_db, daily_themes[day-1], 
+            activities_from_db, current_theme, 
             profile, user_prompt, used_activities
         )
         itinerary.append(day_plan)
@@ -1655,10 +1665,23 @@ def generate_progressive_daily_themes(destination, duration, user_interests, pac
             f"Farewell {destination}"
         ]
     
+    # Ensure we have enough themes for the duration
+    # If duration is longer than available themes, cycle through themes
+    extended_themes = []
+    for i in range(duration):
+        theme_index = i % len(base_themes)
+        theme = base_themes[theme_index]
+        
+        # Add day number if cycling through themes
+        if i >= len(base_themes):
+            theme = f"Day {i+1}: {theme}"
+        
+        extended_themes.append(theme)
+    
     # Customize themes based on user interests
     customized_themes = []
-    for i, theme in enumerate(base_themes[:duration]):
-        if i < len(user_interests):
+    for i, theme in enumerate(extended_themes):
+        if i < len(user_interests) and user_interests:
             primary_interest = user_interests[i % len(user_interests)]
             if 'culinary' in primary_interest:
                 theme = theme.replace('Cultural', 'Culinary').replace('Discovery', 'Food Discovery')
