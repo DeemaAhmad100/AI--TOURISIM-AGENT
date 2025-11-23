@@ -158,21 +158,56 @@ class BookingManager:
             if booking["status"] != BookingStatus.PENDING.value:
                 raise ValueError(f"Cannot process payment for booking with status: {booking['status']}")
             
-            # Create Stripe payment intent
-            payment_intent = stripe.PaymentIntent.create(
-                amount=int(booking["total_amount"] * 100),  # Convert to cents
-                currency=booking["currency"].lower(),
-                payment_method=payment_method_id,
-                customer=self._get_or_create_stripe_customer(customer_details),
-                confirmation_method='manual',
-                confirm=True,
+            # Use StripeService for payment processing
+            from src.api_integration.stripe.stripe_service import StripeService
+            
+            stripe_service = StripeService()
+            
+            # Create customer if needed
+            customer_result = stripe_service.create_customer(
+                email=customer_details["email"],
+                name=customer_details.get("name", "Customer"),
+                phone=customer_details.get("phone"),
                 metadata={
-                    'booking_id': booking_id,
-                    'confirmation_number': booking["confirmation_number"]
+                    "booking_id": booking_id,
+                    "confirmation_number": booking["confirmation_number"]
                 }
             )
             
-            if payment_intent.status == 'succeeded':
+            if not customer_result["success"]:
+                self._update_booking_status(booking_id, BookingStatus.FAILED)
+                return {
+                    "success": False,
+                    "error": f"Customer creation failed: {customer_result['error']}"
+                }
+            
+            # Create payment intent
+            payment_result = stripe_service.create_payment_intent(
+                amount=int(booking["total_amount"] * 100),  # Convert to cents
+                currency=booking["currency"].lower(),
+                customer_id=customer_result["customer_id"],
+                payment_method_types=['card'],
+                metadata={
+                    'booking_id': booking_id,
+                    'confirmation_number': booking["confirmation_number"],
+                    'service_type': 'travel_booking'
+                }
+            )
+            
+            if not payment_result["success"]:
+                self._update_booking_status(booking_id, BookingStatus.FAILED)
+                return {
+                    "success": False,
+                    "error": f"Payment intent creation failed: {payment_result['error']}"
+                }
+            
+            # Confirm payment with provided method
+            confirm_result = stripe_service.confirm_payment(
+                payment_result["payment_intent"].id,
+                payment_method_id
+            )
+            
+            if confirm_result["success"] and confirm_result["payment_intent"].status == 'succeeded':
                 # Update booking status
                 self._update_booking_status(booking_id, BookingStatus.CONFIRMED)
                 
@@ -184,18 +219,20 @@ class BookingManager:
                 
                 return {
                     "success": True,
-                    "payment_intent_id": payment_intent.id,
+                    "payment_intent_id": confirm_result["payment_intent"].id,
                     "status": "confirmed",
-                    "message": "Payment processed successfully!"
+                    "message": "Payment processed successfully!",
+                    "stripe_customer_id": customer_result["customer_id"]
                 }
             else:
                 # Update booking status to failed
                 self._update_booking_status(booking_id, BookingStatus.FAILED)
                 
+                error_msg = confirm_result.get("error", "Payment confirmation failed")
                 return {
                     "success": False,
                     "status": "failed",
-                    "message": "Payment failed. Please try again."
+                    "message": f"Payment failed: {error_msg}"
                 }
                 
         except Exception as e:

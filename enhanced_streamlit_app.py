@@ -135,6 +135,32 @@ st.markdown("""
     100% { transform: scale(1); }
 }
 
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Apply animations to cards */
+.feature-card, .metric-card, .package-card, .hotel-card, .restaurant-card, .activity-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Add subtle glow effect on hover */
+.metric-card:hover, .package-card:hover {
+    animation: glow 2s infinite;
+}
+
 /* Professional Feature Cards for Investors */
 .feature-card {
     background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
@@ -226,6 +252,7 @@ st.markdown("""
     box-shadow: 0 12px 40px rgba(0,0,0,0.1);
     position: relative;
     overflow: hidden;
+    color: #333333 !important;
 }
 
 .package-card::after {
@@ -248,6 +275,129 @@ st.markdown("""
     border-radius: 30px;
     font-weight: 700;
     font-size: 1.3rem;
+
+/* New Attractive Dashboard Cards */
+.hotel-card {
+    background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    box-shadow: 0 15px 50px rgba(102, 126, 234, 0.25);
+    color: white;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hotel-card::before {
+    content: '🏨';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.6;
+}
+
+.hotel-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(102, 126, 234, 0.35);
+}
+
+.hotel-card h4 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hotel-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.restaurant-card {
+    background: linear-gradient(145deg, #f093fb 0%, #f5576c 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    box-shadow: 0 15px 50px rgba(245, 87, 108, 0.25);
+    color: white;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.restaurant-card::before {
+    content: '🍽️';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.6;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(245, 87, 108, 0.35);
+}
+
+.restaurant-card h4 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.restaurant-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.activity-card {
+    background: linear-gradient(145deg, #4facfe 0%, #00f2fe 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    box-shadow: 0 15px 50px rgba(79, 172, 254, 0.25);
+    color: white;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card::before {
+    content: '🎯';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.6;
+}
+
+.activity-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(79, 172, 254, 0.35);
+}
+
+.activity-card h4 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.activity-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
     text-align: center;
     box-shadow: 0 8px 25px rgba(40,167,69,0.4);
     position: relative;
@@ -418,6 +568,7 @@ st.markdown("""
 .package-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     padding: 1.5rem;
+    color: #333333 !important;
     border-radius: 12px;
     border-left: 4px solid #1e3a8a;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -443,9 +594,17 @@ st.markdown("""
 }
 
 .package-card h4 {
-    color: #1e3a8a;
+    color: #1e3a8a !important;
     margin-bottom: 0.75rem;
     font-weight: 600;
+}
+
+.package-card p {
+    color: #333333 !important;
+}
+
+.package-card strong {
+    color: #2c3e50 !important;
 }
 
 .package-card .price-tag {
@@ -652,7 +811,7 @@ def get_all_cities():
     ]
 
 # AI-Powered Package Generation System
-def generate_personalized_package(user_prompt, profile, destination, duration, travelers, budget):
+def generate_personalized_package(user_prompt, profile, destination, duration, travelers, budget, variation_style=None):
     """Generate a comprehensive, destination-specific travel package based on user's dream trip description"""
     
     # Extract destination details for context
@@ -663,8 +822,9 @@ def generate_personalized_package(user_prompt, profile, destination, duration, t
     package_style = analyze_user_prompt_for_style(user_prompt, profile)
     
     # Generate truly diverse package components
+    import uuid
     package = {
-        'id': f"pkg_{len(st.session_state.generated_packages) + 1}",
+        'id': f"pkg_{uuid.uuid4().hex[:8]}",
         'title': f"{destination} {package_style['title']}",
         'destination': destination,
         'duration': duration,
@@ -674,15 +834,15 @@ def generate_personalized_package(user_prompt, profile, destination, duration, t
         'user_prompt_analysis': analyze_trip_desires(user_prompt),
         'created_at': datetime.now(),
         
-        # Generate destination-specific components
+        # Generate destination-specific components with style variation
         'flights': generate_destination_specific_flights(destination, travelers, budget_level),
-        'hotels': generate_destination_specific_hotels(destination, duration, travelers, budget_level, profile, user_prompt),
-        'restaurants': generate_destination_specific_restaurants(destination, profile, user_prompt, budget_level),
-        'activities': generate_destination_specific_activities(destination, profile, user_prompt, budget_level),
-        'local_experiences': generate_destination_specific_local_experiences(destination, profile, user_prompt),
+        'hotels': generate_destination_specific_hotels(destination, duration, travelers, budget_level, profile, user_prompt, variation_style),
+        'restaurants': generate_destination_specific_restaurants(destination, profile, user_prompt, budget_level, variation_style),
+        'activities': generate_destination_specific_activities(destination, profile, user_prompt, budget_level, variation_style),
+        'local_experiences': generate_destination_specific_local_experiences(destination, profile, user_prompt, variation_style),
         
-        # Generate truly unique daily itinerary
-        'daily_itinerary': generate_intelligent_daily_itinerary(destination, duration, profile, user_prompt, package_style),
+        # Generate truly unique daily itinerary based on variation style
+        'daily_itinerary': generate_intelligent_daily_itinerary(destination, duration, profile, user_prompt, package_style, variation_style),
         
         # Accurate pricing
         'pricing': calculate_destination_specific_pricing(destination, duration, travelers, budget_level, package_style)
@@ -691,6 +851,57 @@ def generate_personalized_package(user_prompt, profile, destination, duration, t
     return package
 
 def get_destination_intelligence(destination):
+    """Enhanced destination intelligence with universal support"""
+    
+    # Try to get specific intelligence first
+    specific_intel = get_specific_destination_intelligence(destination)
+    if specific_intel:
+        return specific_intel
+    
+    # Generate universal destination intelligence
+    return generate_universal_destination_intelligence(destination)
+
+def generate_universal_destination_intelligence(destination):
+    """Generate realistic destination intelligence for any location"""
+    
+    return {
+        'name': destination,
+        'country': f'{destination} Country',
+        'region': f'{destination} Region', 
+        'climate': 'Temperate with seasonal variations',
+        'best_time_to_visit': 'Spring and Fall for pleasant weather',
+        'currency': 'Local Currency',
+        'language': f'{destination} Local Language',
+        'time_zone': f'{destination} Time Zone',
+        'main_attractions': [
+            f'{destination} Historic Center',
+            f'{destination} Main Cathedral/Temple',
+            f'{destination} Central Market',
+            f'{destination} Art Museum',
+            f'{destination} Scenic Viewpoint'
+        ],
+        'cultural_highlights': [
+            f'Traditional {destination} architecture',
+            f'Local {destination} festivals',
+            f'{destination} culinary traditions',
+            f'Traditional {destination} crafts',
+            f'{destination} music and dance'
+        ],
+        'transportation': [
+            'Public transportation available',
+            'Taxi services',
+            'Walking-friendly city center',
+            'Bicycle rentals'
+        ],
+        'safety_tips': [
+            'Generally safe destination',
+            'Keep valuables secure',
+            'Be aware of local customs',
+            'Emergency services available'
+        ]
+    }
+
+def get_specific_destination_intelligence(destination):
     """Get comprehensive destination intelligence"""
     destination_data = {
         'China': {
@@ -704,7 +915,10 @@ def get_destination_intelligence(destination):
             'experiences': ['Calligraphy classes', 'Tea ceremonies', 'Martial arts', 'Traditional markets'],
             'shopping': ['Silk Street Market', 'Wangfujing', 'Traditional crafts', 'Tea shops'],
             'nightlife': ['Traditional opera', 'Modern bars', 'Night markets', 'KTV'],
-            'budget_ranges': {'budget': 50, 'moderate': 120, 'luxury': 300},
+            'budget_ranges': {
+                'ultra_budget': 35, 'budget': 65, 'moderate': 120, 
+                'premium': 250, 'luxury': 450, 'ultra_luxury': 800
+            },
             'typical_activities': ['Temple visits', 'Garden walks', 'Cultural shows', 'Food tours'],
             'airports': ['Beijing Capital (PEK)', 'Shanghai Pudong (PVG)'],
             'climate': 'Varies by region - temperate to subtropical'
@@ -720,7 +934,10 @@ def get_destination_intelligence(destination):
             'experiences': ['Wine tasting', 'Cooking classes', 'Art workshops', 'Fashion tours'],
             'shopping': ['Champs-Élysées', 'Le Marais', 'Galleries Lafayette', 'Vintage boutiques'],
             'nightlife': ['Wine bars', 'Cabarets', 'Jazz clubs', 'Seine river cruises'],
-            'budget_ranges': {'budget': 80, 'moderate': 180, 'luxury': 400},
+            'budget_ranges': {
+                'ultra_budget': 55, 'budget': 95, 'moderate': 180, 
+                'premium': 350, 'luxury': 650, 'ultra_luxury': 1200
+            },
             'typical_activities': ['Museum visits', 'Café culture', 'Market exploration', 'Architecture tours'],
             'airports': ['Charles de Gaulle (CDG)', 'Orly (ORY)'],
             'climate': 'Temperate oceanic climate'
@@ -736,7 +953,10 @@ def get_destination_intelligence(destination):
             'experiences': ['Tea ceremony', 'Sushi making', 'Onsen baths', 'Traditional crafts'],
             'shopping': ['Shibuya', 'Harajuku', 'Traditional markets', 'Department stores'],
             'nightlife': ['Izakaya', 'Karaoke', 'Night markets', 'Robot restaurants'],
-            'budget_ranges': {'budget': 70, 'moderate': 160, 'luxury': 350},
+            'budget_ranges': {
+                'ultra_budget': 45, 'budget': 85, 'moderate': 160, 
+                'premium': 320, 'luxury': 580, 'ultra_luxury': 1000
+            },
             'typical_activities': ['Temple visits', 'Garden meditation', 'Tech experiences', 'Food tours'],
             'airports': ['Narita (NRT)', 'Haneda (HND)'],
             'climate': 'Humid subtropical climate'
@@ -760,20 +980,33 @@ def get_destination_intelligence(destination):
         'experiences': ['Local experiences'],
         'shopping': ['Local shopping'],
         'nightlife': ['Local nightlife'],
-        'budget_ranges': {'budget': 60, 'moderate': 150, 'luxury': 300},
+        'budget_ranges': {
+            'ultra_budget': 40, 'budget': 75, 'moderate': 150, 
+            'premium': 280, 'luxury': 500, 'ultra_luxury': 900
+        },
         'typical_activities': ['Sightseeing', 'Cultural activities'],
         'airports': [f'{destination} Airport'],
         'climate': 'Local climate'
     })
 
 def extract_budget_level(budget_string):
-    """Extract budget level from budget string"""
-    if 'Budget' in budget_string:
+    """Extract budget level from enhanced budget string with 6-tier system"""
+    budget_lower = budget_string.lower()
+    
+    if 'ultra budget' in budget_lower or '$300-600' in budget_string:
+        return 'ultra_budget'
+    elif 'budget' in budget_lower and '$600-1000' in budget_string:
         return 'budget'
-    elif 'Moderate' in budget_string:
+    elif 'moderate' in budget_lower or '$1000-2500' in budget_string:
         return 'moderate'
-    elif 'Luxury' in budget_string:
+    elif 'premium' in budget_lower or '$2500-4000' in budget_string:
+        return 'premium'
+    elif 'ultra luxury' in budget_lower or '$7000+' in budget_string:
+        return 'ultra_luxury'
+    elif 'luxury' in budget_lower or '$4000-7000' in budget_string:
         return 'luxury'
+    
+    # Fallback to moderate if no match
     return 'moderate'
 
 def analyze_trip_desires(user_prompt):
@@ -860,6 +1093,45 @@ def analyze_user_prompt_for_style(user_prompt, profile):
     
     return style_configs.get(primary_style, style_configs['cultural-immersive'])
 
+def get_style_config_by_type(style_type):
+    """Get style configuration by specific style type"""
+    style_configs = {
+        'cultural-immersive': {
+            'title': 'Cultural Heritage Explorer',
+            'focus': 'Deep cultural immersion with historical sites and local traditions'
+        },
+        'culinary-focused': {
+            'title': 'Culinary Discovery Journey',
+            'focus': 'Authentic local cuisine and cooking experiences'
+        },
+        'adventure-active': {
+            'title': 'Adventure & Active Explorer',
+            'focus': 'Outdoor adventures and active experiences'
+        },
+        'luxury-premium': {
+            'title': 'Premium Luxury Experience',
+            'focus': 'High-end accommodations and exclusive experiences'
+        },
+        'budget-conscious': {
+            'title': 'Smart Budget Explorer',
+            'focus': 'Maximum value with authentic local experiences'
+        },
+        'photography-focused': {
+            'title': 'Photography Expedition',
+            'focus': 'Stunning photography opportunities and scenic locations'
+        },
+        'family-friendly': {
+            'title': 'Family Adventure Package',
+            'focus': 'Safe, educational and fun experiences for the whole family'
+        },
+        'romantic-couples': {
+            'title': 'Romantic Getaway',
+            'focus': 'Intimate and romantic experiences for couples'
+        }
+    }
+    
+    return style_configs.get(style_type, style_configs['cultural-immersive'])
+
 def generate_destination_specific_flights(destination, travelers, budget_level):
     """Generate accurate, destination-specific flight options"""
     
@@ -934,8 +1206,8 @@ def generate_destination_specific_flights(destination, travelers, budget_level):
     
     return flights
 
-def generate_destination_specific_hotels(destination, duration, travelers, budget_level, profile, user_prompt):
-    """Generate accurate, destination-specific hotel recommendations"""
+def generate_destination_specific_hotels(destination, duration, travelers, budget_level, profile, user_prompt, variation_style=None):
+    """Generate accurate, destination-specific hotel recommendations based on package style"""
     
     destination_info = get_destination_intelligence(destination)
     
@@ -1059,14 +1331,50 @@ def generate_destination_specific_hotels(destination, duration, travelers, budge
             }
         ]
     
+    # Store original hotels for fallback
+    original_hotels = hotels.copy()
+    
+    # Filter hotels based on variation style
+    if variation_style:
+        filtered_hotels = []
+        
+        if variation_style == 'luxury-premium':
+            # Prefer luxury hotels
+            filtered_hotels = [h for h in hotels if h.get('rating', 0) >= 4.5 or 'luxury' in h.get('type', '').lower()]
+        elif variation_style == 'budget-conscious':
+            # Prefer budget options
+            filtered_hotels = [h for h in hotels if h.get('price', 999) <= 80]
+        elif variation_style == 'cultural-immersive':
+            # Prefer traditional/cultural hotels
+            filtered_hotels = [h for h in hotels if any(word in h.get('type', '').lower() for word in ['traditional', 'heritage', 'boutique', 'cultural'])]
+        elif variation_style == 'photography-focused':
+            # Prefer hotels with scenic locations
+            filtered_hotels = [h for h in hotels if h.get('location_score', 0) >= 8.0]
+        
+        # Use filtered hotels if available, otherwise use original hotels
+        if filtered_hotels:
+            hotels = filtered_hotels
+        else:
+            # No hotels matched the filter - apply different selection strategy based on style
+            if variation_style == 'luxury-premium':
+                hotels = sorted(original_hotels, key=lambda x: x.get('price', 0), reverse=True)[:3]
+            elif variation_style == 'budget-conscious':
+                hotels = sorted(original_hotels, key=lambda x: x.get('price', 999))[:3]
+            elif variation_style == 'cultural-immersive':
+                hotels = [h for h in original_hotels if any(word in h.get('type', '').lower() for word in ['heritage', 'historic', 'boutique'])] or original_hotels[:3]
+            elif variation_style == 'photography-focused':
+                hotels = [h for h in original_hotels if h.get('location_score', 0) >= 7.0] or original_hotels[:3]
+            else:
+                hotels = original_hotels[:3]  # Default fallback
+    
     # Calculate totals for each hotel
     for hotel in hotels:
         hotel['total_price'] = hotel['price'] * duration
     
-    return hotels
+    return hotels[:3]  # Limit to top 3 hotels
 
-def generate_destination_specific_restaurants(destination, profile, user_prompt, budget_level):
-    """Generate authentic, destination-specific restaurant recommendations"""
+def generate_destination_specific_restaurants(destination, profile, user_prompt, budget_level, variation_style=None):
+    """Generate authentic, destination-specific restaurant recommendations based on package style"""
     
     destination_info = get_destination_intelligence(destination)
     dietary_restrictions = profile.get('dietary_restrictions', [])
@@ -1115,6 +1423,68 @@ def generate_destination_specific_restaurants(destination, profile, user_prompt,
                 'booking_notes': 'Multi-course tasting menu with cultural storytelling'
             }
         ],
+        'Spain': [
+            {
+                'name': 'Casa Botín',
+                'cuisine': 'Traditional Spanish',
+                'rating': 4.8,
+                'price_range': '€€€€',
+                'specialty': 'Cochinillo Asado (Roast Suckling Pig)',
+                'why_recommended': 'World\'s oldest restaurant (1725) serving traditional Castilian cuisine',
+                'reservation_time': 'Dinner reservation essential',
+                'booking_notes': 'Historic atmosphere, traditional wood-fired oven cooking'
+            },
+            {
+                'name': 'Mercado de San Miguel',
+                'cuisine': 'Spanish Tapas Market',
+                'rating': 4.3,
+                'price_range': '€€',
+                'specialty': 'Gourmet Tapas & Spanish Wines',
+                'why_recommended': 'Historic glass market hall with diverse Spanish culinary offerings',
+                'reservation_time': 'No reservation needed',
+                'booking_notes': 'Perfect for sampling multiple Spanish delicacies'
+            },
+            {
+                'name': 'DiverXO',
+                'cuisine': 'Innovative Spanish-Asian Fusion',
+                'rating': 4.9,
+                'price_range': '€€€€€',
+                'specialty': 'Creative Tasting Menu',
+                'why_recommended': '3 Michelin stars, avant-garde culinary artistry by David Muñoz',
+                'reservation_time': 'Advance booking required (months ahead)',
+                'booking_notes': 'Unique dining experience, artistic presentation'
+            },
+            {
+                'name': 'Taberna El Sur',
+                'cuisine': 'Andalusian Tapas',
+                'rating': 4.4,
+                'price_range': '€',
+                'specialty': 'Authentic Tapas & Sherry',
+                'why_recommended': 'Authentic neighborhood tapas bar with local atmosphere',
+                'reservation_time': 'Walk-in friendly',
+                'booking_notes': 'Cash only, stand at bar for authentic experience'
+            },
+            {
+                'name': 'Sobrino de Botín',
+                'cuisine': 'Traditional Madrileño',
+                'rating': 4.6,
+                'price_range': '€€€',
+                'specialty': 'Cordero Asado (Roast Lamb)',
+                'why_recommended': 'Traditional Madrid cuisine in historic setting',
+                'reservation_time': 'Recommended for dinner',
+                'booking_notes': 'Famous for traditional roasted meats'
+            },
+            {
+                'name': 'Paco Roncero Restaurante',
+                'cuisine': 'Modern Spanish Gastronomy',
+                'rating': 4.7,
+                'price_range': '€€€€',
+                'specialty': 'Molecular Gastronomy',
+                'why_recommended': '2 Michelin stars, innovative Spanish cuisine techniques',
+                'reservation_time': 'Advance reservation required',
+                'booking_notes': 'Tasting menu experience, creative presentation'
+            }
+        ],
         'Paris, France': [
             {
                 'name': 'L\'Ami Jean',
@@ -1139,34 +1509,329 @@ def generate_destination_specific_restaurants(destination, profile, user_prompt,
         ]
     }
     
-    # Filter by destination
+    # Filter by destination with better matching
+    destination_restaurants = []
+    dest_lower = destination.lower()
+    
     for dest_key, restaurants in restaurant_data.items():
-        if dest_key.lower() in destination.lower():
-            destination_restaurants = restaurants
+        key_lower = dest_key.lower()
+        if (key_lower in dest_lower or dest_lower in key_lower or 
+            (key_lower == 'spain' and any(city in dest_lower for city in ['madrid', 'barcelona', 'seville', 'granada', 'valencia'])) or
+            (dest_lower == 'spain' and key_lower in ['madrid', 'barcelona'])):
+            destination_restaurants = restaurants.copy()
             break
-    else:
-        destination_restaurants = [
-            {
-                'name': f'{destination} Local Cuisine Restaurant',
-                'cuisine': f'{destination} Traditional',
-                'rating': 4.2,
-                'price_range': '€€',
-                'specialty': f'Local {destination} dishes',
-                'why_recommended': f'Authentic local cuisine representing {destination} culinary traditions',
-                'reservation_time': 'Dinner reservation recommended',
-                'booking_notes': 'Local ingredients and traditional preparation methods'
-            }
-        ]
+    
+    if not destination_restaurants:
+        destination_restaurants = generate_universal_restaurants(destination)
     
     # Filter by dietary restrictions
     if 'vegetarian' in dietary_restrictions:
         for restaurant in destination_restaurants:
             restaurant['booking_notes'] += ' - Vegetarian options available'
     
+    # Apply style-specific filtering and selection
+    if variation_style:
+        original_restaurants = destination_restaurants.copy()
+        
+        if variation_style == 'culinary-focused':
+            # Prefer high-rated culinary experiences and unique cuisines
+            filtered = [r for r in destination_restaurants if r.get('rating', 0) >= 4.5 or 'gourmet' in r.get('specialty', '').lower() or 'culinary' in r.get('name', '').lower()]
+            if filtered:
+                destination_restaurants = sorted(filtered, key=lambda x: x.get('rating', 0), reverse=True)
+            else:
+                destination_restaurants = sorted(destination_restaurants, key=lambda x: x.get('rating', 0), reverse=True)
+                
+        elif variation_style == 'luxury-premium':
+            # Prefer upscale restaurants with premium pricing
+            filtered = [r for r in destination_restaurants if ('€€€€' in r.get('price_range', '') or '€€€' in r.get('price_range', '')) and r.get('rating', 0) >= 4.5]
+            if filtered:
+                destination_restaurants = filtered
+            else:
+                # Fallback to highest rated
+                destination_restaurants = sorted(destination_restaurants, key=lambda x: x.get('rating', 0), reverse=True)
+                
+        elif variation_style == 'budget-conscious':
+            # Prefer budget-friendly options
+            filtered = [r for r in destination_restaurants if '€' in r.get('price_range', '') and '€€' not in r.get('price_range', '') or r.get('price', 0) <= 50]
+            if filtered:
+                destination_restaurants = filtered
+            else:
+                # Fallback to lowest priced
+                destination_restaurants = sorted(destination_restaurants, key=lambda x: len(x.get('price_range', '€€€')))
+                
+        elif variation_style == 'cultural-immersive':
+            # Prefer traditional/authentic restaurants
+            filtered = [r for r in destination_restaurants if any(word in r.get('cuisine', '').lower() + ' ' + r.get('specialty', '').lower() for word in ['traditional', 'authentic', 'local', 'heritage', 'historic'])]
+            if filtered:
+                destination_restaurants = filtered
+            else:
+                destination_restaurants = original_restaurants
+                
+        elif variation_style == 'adventure-active':
+            # Prefer casual, accessible restaurants for active travelers
+            filtered = [r for r in destination_restaurants if 'casual' in r.get('booking_notes', '').lower() or 'walk-in' in r.get('reservation_time', '').lower() or '€€' in r.get('price_range', '')]
+            if filtered:
+                destination_restaurants = filtered
+            else:
+                destination_restaurants = original_restaurants
+                
+        elif variation_style == 'photography-focused':
+            # Prefer restaurants with unique atmosphere or views
+            filtered = [r for r in destination_restaurants if any(word in r.get('why_recommended', '').lower() + ' ' + r.get('booking_notes', '').lower() for word in ['atmosphere', 'view', 'historic', 'unique', 'artistic'])]
+            if filtered:
+                destination_restaurants = filtered
+            else:
+                destination_restaurants = original_restaurants
+        
+        # Ensure we have at least 3 restaurants - add back originals if needed
+        if len(destination_restaurants) < 3:
+            remaining = [r for r in original_restaurants if r not in destination_restaurants]
+            needed = 3 - len(destination_restaurants)
+            destination_restaurants.extend(remaining[:needed])
+            
+        # Final fallback - generate unique restaurants if still not enough
+        while len(destination_restaurants) < 3:
+            style_prefix = {
+                'culinary-focused': 'Gourmet',
+                'luxury-premium': 'Luxury',
+                'cultural-immersive': 'Traditional',
+                'adventure-active': 'Casual',
+                'photography-focused': 'Scenic',
+                'budget-conscious': 'Local'
+            }.get(variation_style, 'Local')
+            
+            destination_restaurants.append({
+                'name': f'{style_prefix} {destination} Restaurant {len(destination_restaurants) + 1}',
+                'cuisine': f'{destination} {style_prefix}',
+                'rating': 4.0 + (len(destination_restaurants) * 0.1),
+                'price_range': '€€€€' if variation_style == 'luxury-premium' else '€' if variation_style == 'budget-conscious' else '€€',
+                'specialty': f'{style_prefix} {destination} specialties',
+                'why_recommended': f'{style_prefix} dining experience tailored for {variation_style.replace("-", " ")} travelers',
+                'reservation_time': 'Advance booking recommended' if variation_style == 'luxury-premium' else 'Flexible',
+                'booking_notes': f'Perfect for {variation_style.replace("-", " ")} experience'
+            })
+    
     return destination_restaurants[:4]  # Return top 4 restaurants
 
-def generate_destination_specific_activities(destination, profile, user_prompt, budget_level):
-    """Generate destination-specific activities based on interests"""
+def generate_universal_restaurants(destination):
+    """Generate diverse, realistic restaurants for any destination"""
+    
+    # Common restaurant types that exist globally
+    restaurant_types = [
+        {
+            'name': f'{destination} Heritage Restaurant',
+            'cuisine': f'Traditional {destination}',
+            'rating': 4.6,
+            'price_range': '€€€',
+            'specialty': f'Authentic {destination} classics',
+            'why_recommended': f'Family-owned restaurant serving traditional {destination} recipes for generations',
+            'reservation_time': 'Dinner reservation recommended',
+            'booking_notes': 'Historic recipes, local ingredients, cultural atmosphere'
+        },
+        {
+            'name': f'Modern {destination} Bistro',
+            'cuisine': f'Contemporary {destination}',
+            'rating': 4.4,
+            'price_range': '€€',
+            'specialty': f'Modern interpretations of {destination} cuisine',
+            'why_recommended': f'Innovative chefs putting creative spin on {destination} culinary traditions',
+            'reservation_time': 'Lunch or dinner',
+            'booking_notes': 'Farm-to-table ingredients, artistic presentation'
+        },
+        {
+            'name': f'{destination} Street Food Market',
+            'cuisine': f'{destination} Street Food',
+            'rating': 4.3,
+            'price_range': '€',
+            'specialty': f'Local street food specialties',
+            'why_recommended': f'Authentic {destination} street food experience with local vendors',
+            'reservation_time': 'Walk-in friendly',
+            'booking_notes': 'Cash preferred, try multiple vendors for variety'
+        },
+        {
+            'name': f'The {destination} Gourmet',
+            'cuisine': f'Fine Dining {destination}',
+            'rating': 4.8,
+            'price_range': '€€€€',
+            'specialty': f'Luxury {destination} tasting menu',
+            'why_recommended': f'Award-winning restaurant showcasing {destination} finest culinary artistry',
+            'reservation_time': 'Advanced booking required',
+            'booking_notes': 'Tasting menu experience, wine pairings available'
+        },
+        {
+            'name': f'{destination} Local Tavern',
+            'cuisine': f'Traditional {destination}',
+            'rating': 4.2,
+            'price_range': '€€',
+            'specialty': f'Hearty {destination} comfort food',
+            'why_recommended': f'Neighborhood favorite serving generous portions of {destination} comfort classics',
+            'reservation_time': 'Walk-in welcome',
+            'booking_notes': 'Local atmosphere, generous portions, family-friendly'
+        },
+        {
+            'name': f'Fusion {destination} Kitchen',
+            'cuisine': f'International-{destination} Fusion',
+            'rating': 4.5,
+            'price_range': '€€€',
+            'specialty': f'{destination}-international fusion dishes',
+            'why_recommended': f'Creative fusion of {destination} flavors with international techniques',
+            'reservation_time': 'Dinner recommended',
+            'booking_notes': 'Creative menu, dietary restrictions accommodated'
+        }
+    ]
+    
+    return restaurant_types
+
+def generate_universal_hotels(destination):
+    """Generate diverse, realistic hotels for any destination"""
+    
+    hotel_types = [
+        {
+            'name': f'{destination} Grand Hotel',
+            'type': 'Luxury Heritage Hotel',
+            'rating': 4.7,
+            'price': 320,
+            'location': f'Historic {destination} Center',
+            'amenities': ['Luxury spa', 'Fine dining', 'Concierge', 'Historic architecture'],
+            'why_recommended': f'Iconic {destination} hotel with rich history and elegant accommodations',
+            'booking_notes': 'Historic landmark, premium location, luxury service'
+        },
+        {
+            'name': f'{destination} Boutique Retreat',
+            'type': 'Boutique Hotel',
+            'rating': 4.5,
+            'price': 180,
+            'location': f'{destination} Arts District',
+            'amenities': ['Local art', 'Artisan restaurant', 'Unique design', 'Cultural experiences'],
+            'why_recommended': f'Stylish boutique hotel showcasing {destination} local culture and design',
+            'booking_notes': 'Unique character, local artists, cultural immersion'
+        },
+        {
+            'name': f'{destination} City Lodge',
+            'type': 'Modern Business Hotel',
+            'rating': 4.2,
+            'price': 120,
+            'location': f'Central {destination}',
+            'amenities': ['Business center', 'Fitness center', 'WiFi', 'Conference rooms'],
+            'why_recommended': f'Comfortable modern accommodations with excellent {destination} city access',
+            'booking_notes': 'Business-friendly, central location, reliable amenities'
+        },
+        {
+            'name': f'{destination} Budget Inn',
+            'type': 'Economy Hotel',
+            'rating': 4.0,
+            'price': 65,
+            'location': f'{destination} Transport Hub',
+            'amenities': ['Free breakfast', 'WiFi', 'Luggage storage', '24-hour reception'],
+            'why_recommended': f'Clean, affordable accommodation with good {destination} transport connections',
+            'booking_notes': 'Great value, convenient location, basic amenities'
+        },
+        {
+            'name': f'{destination} Heritage Manor',
+            'type': 'Historic Hotel',
+            'rating': 4.6,
+            'price': 250,
+            'location': f'Historic {destination} Quarter',
+            'amenities': ['Historic gardens', 'Traditional restaurant', 'Antique furnishings', 'Cultural tours'],
+            'why_recommended': f'Stay in beautifully preserved {destination} historic property with authentic charm',
+            'booking_notes': 'Historical significance, authentic period features, cultural value'
+        },
+        {
+            'name': f'{destination} Eco Lodge',
+            'type': 'Sustainable Hotel',
+            'rating': 4.4,
+            'price': 140,
+            'location': f'{destination} Green District',
+            'amenities': ['Eco-friendly practices', 'Organic restaurant', 'Nature access', 'Sustainability tours'],
+            'why_recommended': f'Environmentally conscious hotel promoting sustainable {destination} tourism',
+            'booking_notes': 'Eco-friendly, sustainable practices, nature connection'
+        }
+    ]
+    
+    return hotel_types
+
+def generate_universal_activities(destination):
+    """Generate diverse, realistic activities for any destination"""
+    
+    activity_types = [
+        {
+            'name': f'{destination} Historic Walking Tour',
+            'type': 'Historical Cultural Experience',
+            'duration': '3 hours',
+            'price': 35,
+            'difficulty': 'Easy',
+            'group_size': 'Small group (12-15 people)',
+            'match_reason': f'Perfect introduction to {destination} history and landmarks'
+        },
+        {
+            'name': f'{destination} Cooking Workshop',
+            'type': 'Culinary Experience',
+            'duration': '4 hours',
+            'price': 85,
+            'difficulty': 'Easy',
+            'group_size': 'Small group (8-12 people)',
+            'match_reason': f'Hands-on experience learning traditional {destination} cuisine'
+        },
+        {
+            'name': f'{destination} Art & Culture Tour',
+            'type': 'Cultural Experience',
+            'duration': '2.5 hours',
+            'price': 45,
+            'difficulty': 'Easy',
+            'group_size': 'Medium group (15-20 people)',
+            'match_reason': f'Explore {destination} artistic heritage and cultural sites'
+        },
+        {
+            'name': f'{destination} Adventure Hiking',
+            'type': 'Outdoor Adventure',
+            'duration': '6 hours',
+            'price': 75,
+            'difficulty': 'Moderate',
+            'group_size': 'Small group (8-12 people)',
+            'match_reason': f'Discover {destination} natural beauty and scenic landscapes'
+        },
+        {
+            'name': f'{destination} Photography Walk',
+            'type': 'Photography Experience',
+            'duration': '3 hours',
+            'price': 55,
+            'difficulty': 'Easy',
+            'group_size': 'Small group (6-10 people)',
+            'match_reason': f'Capture {destination} most photogenic spots with professional guidance'
+        },
+        {
+            'name': f'{destination} Local Market Experience',
+            'type': 'Cultural Immersion',
+            'duration': '2 hours',
+            'price': 25,
+            'difficulty': 'Easy',
+            'group_size': 'Small group (10-15 people)',
+            'match_reason': f'Experience authentic {destination} daily life and local commerce'
+        },
+        {
+            'name': f'{destination} Craft Workshop',
+            'type': 'Hands-on Cultural Experience',
+            'duration': '3 hours',
+            'price': 65,
+            'difficulty': 'Easy',
+            'group_size': 'Small group (8-10 people)',
+            'match_reason': f'Learn traditional {destination} crafts from local artisans'
+        },
+        {
+            'name': f'{destination} Evening Entertainment',
+            'type': 'Cultural Performance',
+            'duration': '2 hours',
+            'price': 40,
+            'difficulty': 'Easy',
+            'group_size': 'Medium group (20-30 people)',
+            'match_reason': f'Experience {destination} traditional music, dance, or performance arts'
+        }
+    ]
+    
+    return activity_types
+
+def generate_destination_specific_activities(destination, profile, user_prompt, budget_level, variation_style=None):
+    """Generate destination-specific activities based on interests and package style"""
     
     destination_info = get_destination_intelligence(destination)
     interests = profile.get('interests', ['cultural experiences'])
@@ -1266,10 +1931,52 @@ def generate_destination_specific_activities(destination, profile, user_prompt, 
         prioritized_activities.extend([act for act in destination_activities if act not in prioritized_activities])
         destination_activities = prioritized_activities
     
+    # Filter activities based on variation style
+    if variation_style:
+        if variation_style == 'cultural-immersive':
+            # Prefer cultural and historical activities
+            destination_activities = [act for act in destination_activities if any(word in act.get('type', '').lower() for word in ['cultural', 'historical', 'heritage', 'museum', 'traditional'])]
+        elif variation_style == 'adventure-active':
+            # Prefer adventure and active activities
+            destination_activities = [act for act in destination_activities if any(word in act.get('type', '').lower() for word in ['adventure', 'active', 'outdoor', 'sports', 'hiking', 'climbing'])]
+        elif variation_style == 'culinary-focused':
+            # Prefer food-related activities
+            destination_activities = [act for act in destination_activities if any(word in act.get('name', '').lower() for word in ['food', 'cooking', 'culinary', 'market', 'cuisine', 'taste'])]
+        elif variation_style == 'photography-focused':
+            # Prefer scenic and photo-worthy activities
+            destination_activities = [act for act in destination_activities if any(word in act.get('name', '').lower() for word in ['photography', 'scenic', 'viewpoint', 'sunset', 'landscape', 'architecture'])]
+        elif variation_style == 'luxury-premium':
+            # Prefer exclusive and premium activities
+            destination_activities = [act for act in destination_activities if act.get('price', 0) >= 100 or 'private' in act.get('group_size', '').lower()]
+        elif variation_style == 'budget-conscious':
+            # Prefer affordable activities
+            destination_activities = [act for act in destination_activities if act.get('price', 999) <= 75]
+        
+        # Ensure we have at least 4 activities  
+        if len(destination_activities) < 4:
+            # Add back activities if filtering was too restrictive
+            for dest_k, all_acts in activity_data.items():
+                if dest_k.lower() in destination.lower():
+                    needed = 4 - len(destination_activities)
+                    destination_activities.extend([act for act in all_acts if act not in destination_activities][:needed])
+                    break
+            
+            # If still not enough, add generic activities
+            while len(destination_activities) < 4:
+                destination_activities.append({
+                    'name': f'{destination} Discovery Tour {len(destination_activities) + 1}',
+                    'type': 'Cultural Tour',
+                    'duration': '3 hours',
+                    'price': 60,
+                    'difficulty': 'Easy',
+                    'group_size': 'Small group',
+                    'match_reason': f'Explore the best of {destination} with local guides'
+                })
+    
     return destination_activities[:5]  # Return top 5 activities
 
-def generate_destination_specific_local_experiences(destination, profile, user_prompt):
-    """Generate unique local experiences specific to destination"""
+def generate_destination_specific_local_experiences(destination, profile, user_prompt, variation_style=None):
+    """Generate unique local experiences specific to destination and package style"""
     
     destination_info = get_destination_intelligence(destination)
     
@@ -1319,26 +2026,116 @@ def generate_destination_specific_local_experiences(destination, profile, user_p
     # Find destination experiences
     for dest_key, experiences in experience_data.items():
         if dest_key.lower() in destination.lower():
-            return experiences[:4]
+            destination_experiences = experiences
+            break
+    else:
+        # Default experiences
+        destination_experiences = [
+            {
+                'name': f'{destination} Local Neighborhood Walk',
+                'type': 'Cultural Exploration',
+                'duration': '2 hours',
+                'price': 30,
+                'description': f'Explore authentic local neighborhoods in {destination} with resident guide'
+            }
+        ]
     
-    # Default experiences
-    return [
-        {
-            'name': f'{destination} Local Neighborhood Walk',
-            'type': 'Cultural Exploration',
-            'duration': '2 hours',
-            'price': 30,
-            'description': f'Explore authentic local neighborhoods in {destination} with resident guide'
-        }
-    ]
+    # Filter experiences based on variation style
+    if variation_style:
+        if variation_style == 'cultural-immersive':
+            # Prefer cultural and traditional experiences
+            destination_experiences = [exp for exp in destination_experiences if any(word in exp.get('type', '').lower() for word in ['cultural', 'traditional', 'heritage', 'historical'])]
+        elif variation_style == 'culinary-focused':
+            # Prefer food-related experiences
+            destination_experiences = [exp for exp in destination_experiences if any(word in exp.get('name', '').lower() for word in ['cooking', 'food', 'market', 'culinary', 'tea', 'dining'])]
+        elif variation_style == 'adventure-active':
+            # Prefer active experiences
+            destination_experiences = [exp for exp in destination_experiences if any(word in exp.get('type', '').lower() for word in ['adventure', 'active', 'sports', 'physical'])]
+        elif variation_style == 'photography-focused':
+            # Prefer visually appealing experiences
+            destination_experiences = [exp for exp in destination_experiences if any(word in exp.get('name', '').lower() for word in ['photography', 'scenic', 'sunrise', 'sunset', 'view', 'art'])]
+        
+        # Ensure we have at least 3 experiences
+        if len(destination_experiences) < 3:
+            for dest_k, all_exps in experience_data.items():
+                if dest_k.lower() in destination.lower():
+                    needed = 3 - len(destination_experiences)
+                    destination_experiences.extend([exp for exp in all_exps if exp not in destination_experiences][:needed])
+                    break
+            
+            # Generate style-specific experiences if still needed
+            while len(destination_experiences) < 3:
+                exp_count = len(destination_experiences) + 1
+                
+                if variation_style == 'cultural-immersive':
+                    new_exp = {
+                        'name': f'{destination} Cultural Heritage Walk {exp_count}',
+                        'type': 'Cultural Immersion',
+                        'duration': '3 hours',
+                        'price': 45,
+                        'description': f'Deep dive into {destination} history, traditions, and local customs with expert guides'
+                    }
+                elif variation_style == 'culinary-focused':
+                    new_exp = {
+                        'name': f'{destination} Food Market Discovery {exp_count}',
+                        'type': 'Culinary Adventure',
+                        'duration': '2.5 hours',
+                        'price': 55,
+                        'description': f'Explore {destination} local markets, taste regional specialties, and meet local vendors'
+                    }
+                elif variation_style == 'adventure-active':
+                    new_exp = {
+                        'name': f'{destination} Active Adventure Tour {exp_count}',
+                        'type': 'Outdoor Adventure',
+                        'duration': '4 hours',
+                        'price': 75,
+                        'description': f'Active exploration of {destination} through hiking, cycling, or outdoor activities'
+                    }
+                elif variation_style == 'luxury-premium':
+                    new_exp = {
+                        'name': f'{destination} VIP Experience {exp_count}',
+                        'type': 'Luxury Experience',
+                        'duration': '3 hours',
+                        'price': 120,
+                        'description': f'Exclusive {destination} experience with private guide and premium access'
+                    }
+                elif variation_style == 'photography-focused':
+                    new_exp = {
+                        'name': f'{destination} Photography Tour {exp_count}',
+                        'type': 'Photography Experience',
+                        'duration': '4 hours',
+                        'price': 65,
+                        'description': f'Capture {destination} best shots with professional photography guidance'
+                    }
+                elif variation_style == 'budget-conscious':
+                    new_exp = {
+                        'name': f'{destination} Free Walking Discovery {exp_count}',
+                        'type': 'Budget-Friendly Tour',
+                        'duration': '2 hours',
+                        'price': 25,
+                        'description': f'Affordable exploration of {destination} highlights and hidden gems'
+                    }
+                else:
+                    new_exp = {
+                        'name': f'{destination} Local Experience {exp_count}',
+                        'type': 'Cultural Experience',
+                        'duration': '2 hours',
+                        'price': 40,
+                        'description': f'Authentic local experience showcasing {destination} culture and traditions'
+                    }
+                
+                destination_experiences.append(new_exp)
+    
+    return destination_experiences[:4]
 
-def generate_intelligent_daily_itinerary(destination, duration, profile, user_prompt, package_style):
+def generate_intelligent_daily_itinerary(destination, duration, profile, user_prompt, package_style, variation_style=None):
     """Generate truly unique, destination-specific daily itinerary with enhanced AI and database integration"""
     
     # Use enhanced itinerary generator if available
     if ENHANCED_FEATURES_AVAILABLE:
         try:
             enhanced_generator = EnhancedItineraryGenerator(get_supabase_client())
+            # The EnhancedItineraryGenerator expects 6 parameters, not 7
             return enhanced_generator.generate_intelligent_daily_itinerary(
                 destination, duration, profile, user_prompt, package_style
             )
@@ -1347,10 +2144,10 @@ def generate_intelligent_daily_itinerary(destination, duration, profile, user_pr
             # Fall back to enhanced implementation
     
     # Enhanced database-driven implementation
-    return generate_database_driven_itinerary(destination, duration, profile, user_prompt, package_style)
+    return generate_database_driven_itinerary(destination, duration, profile, user_prompt, package_style, variation_style)
 
-def generate_database_driven_itinerary(destination, duration, profile, user_prompt, package_style):
-    """Generate highly detailed, database-driven daily itinerary"""
+def generate_database_driven_itinerary(destination, duration, profile, user_prompt, package_style, variation_style=None):
+    """Generate highly detailed, database-driven daily itinerary based on package variation style"""
     
     destination_info = get_destination_intelligence(destination)
     activities_from_db = fetch_activities_from_database(destination)
@@ -1359,8 +2156,9 @@ def generate_database_driven_itinerary(destination, duration, profile, user_prom
     itinerary = []
     used_activities = set()  # Track used activities to avoid repetition
     
-    # Create day-specific themes with intelligent variation
-    daily_themes = generate_progressive_daily_themes(destination, duration, user_interests, package_style)
+    # Create day-specific themes with intelligent variation based on package variation style
+    effective_style = variation_style or package_style.get('style_type', 'cultural-immersive')
+    daily_themes = generate_progressive_daily_themes(destination, duration, user_interests, effective_style)
     
     # Safety check: ensure we have enough themes
     if len(daily_themes) < duration:
@@ -1618,10 +2416,245 @@ def analyze_user_interests_advanced(profile, user_prompt):
     sorted_interests = sorted(interest_analysis.items(), key=lambda x: x[1], reverse=True)
     return [interest[0] for interest in sorted_interests[:3] if interest[1] > 0]
 
-def generate_progressive_daily_themes(destination, duration, user_interests, package_style):
-    """Generate progressive themes that build on each other throughout the trip"""
+def generate_style_specific_themes(destination, theme_focus):
+    """Generate destination-specific themes based on package style"""
     
     destination_lower = destination.lower()
+    
+    # Style-specific theme templates
+    theme_templates = {
+        'cultural': {
+            'paris': [
+                "Arrival & Classic Paris Discovery - Eiffel Tower & Notre-Dame",
+                "Art & Culture Immersion - Louvre & Musée d'Orsay", 
+                "Historic Paris Exploration - Le Marais & Latin Quarter",
+                "Royal Heritage Experience - Versailles Palace Day Trip",
+                "Literary Paris Walk - Shakespeare & Company, Panthéon",
+                "Sacred Paris - Sainte-Chapelle & Sacré-Cœur",
+                "Cultural Farewell - Opera House & Champs-Élysées"
+            ],
+            'tokyo': [
+                "Tokyo Arrival & Traditional Districts - Asakusa Temples",
+                "Imperial Culture - East Gardens & National Museum",
+                "Traditional Arts Experience - Kabuki & Tea Ceremony",
+                "Spiritual Tokyo - Meiji Shrine & Senso-ji Temple", 
+                "Edo Culture Discovery - Traditional Crafts Workshop",
+                "Cultural Neighborhoods - Yanaka & Traditional Markets"
+            ],
+            'spain': [
+                "Arrival & Madrid Royal Heritage - Royal Palace & Plaza Mayor",
+                "Islamic Spain Discovery - Alhambra Palace in Granada",
+                "Medieval Spanish Culture - Toledo & Historic Centers",
+                "Artistic Spain - Prado Museum & Picasso Masterpieces",
+                "Religious Heritage - Santiago de Compostela & Cathedrals",
+                "Moorish Legacy - Alcázar & Cordoba Mezquita",
+                "Spanish Traditions - Flamenco & Cultural Farewell"
+            ],
+            'generic': [
+                f"Arrival & {destination} Cultural Overview",
+                f"Historical Heart of {destination}",
+                f"Traditional Arts & Crafts Experience", 
+                f"Religious & Spiritual {destination}",
+                f"Museums & Cultural Heritage",
+                f"Local Traditions & Customs",
+                f"Cultural Farewell Experience"
+            ]
+        },
+        'culinary': {
+            'paris': [
+                "Culinary Arrival - Market Tour & French Bistro",
+                "Patisserie & Boulangerie Workshop Experience",
+                "Wine & Cheese Tasting in Montmartre",
+                "Michelin Star Dining & Fine French Cuisine",
+                "Cooking Class - Traditional French Dishes",
+                "Food Market Adventures - Le Marché aux Puces",
+                "Farewell Feast - Seine River Dinner Cruise"
+            ],
+            'tokyo': [
+                "Culinary Tokyo Arrival - Tsukiji Outer Market Tour", 
+                "Sushi Making Class & Sake Tasting",
+                "Ramen & Street Food Discovery Tour",
+                "Kaiseki Fine Dining Experience",
+                "Cooking Workshop - Traditional Japanese Cuisine",
+                "Food Districts Exploration - Shibuya & Harajuku Eats"
+            ],
+            'spain': [
+                "Spanish Culinary Arrival - Mercado San Miguel & Tapas Tour",
+                "Paella Cooking Class & Valencia Rice Fields",
+                "Jamón Ibérico & Wine Tasting in La Rioja",
+                "Pintxos Bar Hopping in Basque Country",
+                "Traditional Spanish Market & Ingredient Tour",
+                "Sherry & Andalusian Cuisine Experience",
+                "Farewell Feast - Casa Botín & Spanish Classics"
+            ],
+            'generic': [
+                f"{destination} Culinary Discovery - Markets & Local Cuisine",
+                f"Cooking Class - Traditional {destination} Dishes",
+                f"Street Food & Local Eateries Adventure",
+                f"Fine Dining & Regional Specialties",
+                f"Food Market & Ingredient Shopping Tour",
+                f"Wine/Local Drinks Tasting Experience",
+                f"Farewell Feast - Best of {destination} Cuisine"
+            ]
+        },
+        'adventure': {
+            'paris': [
+                "Active Paris Arrival - Seine Kayaking & Bike Tour",
+                "Urban Adventure - Rock Climbing & Parkour",
+                "Paris by Foot - Marathon Walking Tour",
+                "Adventure Day Trip - Fontainebleau Rock Climbing", 
+                "Active Seine Experience - Rowing & Water Sports",
+                "High Adventure - Eiffel Tower Climbing Experience"
+            ],
+            'spain': [
+                "Adventure Spain Arrival - Pyrenees Hiking Preview",
+                "Camino de Santiago Walking Experience",
+                "Costa Brava Sea Kayaking & Cliff Climbing",
+                "Sierra Nevada Mountain Adventures", 
+                "Picos de Europa Rock Climbing & Canyoning",
+                "Active Barcelona - Beach Sports & Urban Cycling",
+                "Adventure Farewell - Spanish Peaks Final Challenge"
+            ],
+            'generic': [
+                f"Adventure Arrival - {destination} Outdoor Orientation",
+                f"Urban Adventures - City Exploration on Foot",
+                f"Active {destination} - Hiking & Outdoor Activities",
+                f"Water Adventures - River/Lake Activities", 
+                f"Extreme {destination} - Adventure Sports",
+                f"Mountain/Hill Adventures Near {destination}",
+                f"Active Farewell - Final Adventure Challenge"
+            ]
+        },
+        'luxury': {
+            'paris': [
+                "Luxury Paris Arrival - Private Château Welcome",
+                "VIP Louvre Experience - After Hours Private Tour",
+                "Exclusive Shopping - Personal Stylist on Champs-Élysées",
+                "Private Versailles - Royal Treatment with Guide",
+                "Michelin Star Restaurant Hopping Experience", 
+                "Luxury Seine Experience - Private Yacht Charter",
+                "Farewell Luxury - Private Opera Box & Champagne"
+            ],
+            'spain': [
+                "Luxury Spain Arrival - Private Ritz Madrid Experience",
+                "Exclusive Alhambra - Private After-Hours Palace Tour",
+                "VIP Shopping - Luxury Boutiques in Salamanca District",
+                "Private Prado Museum - Exclusive Art Collection Tour",
+                "Michelin Star Journey - DiverXO & Exclusive Dining",
+                "Luxury Andalusia - Private Helicopter to Seville", 
+                "Royal Farewell - Private Royal Palace & Luxury Send-off"
+            ],
+            'generic': [
+                f"Luxury {destination} Arrival - VIP Welcome Experience",
+                f"Exclusive {destination} - Private Tours & Experiences",
+                f"Luxury Shopping & Personal Services",
+                f"VIP Cultural Experiences - Behind the Scenes",
+                f"Fine Dining & Exclusive Restaurants",
+                f"Luxury Transportation & Scenic Routes", 
+                f"Farewell Luxury Experience - Premium Send-off"
+            ]
+        },
+        'photography': {
+            'paris': [
+                "Golden Hour Paris - Sunrise at Trocadéro & Eiffel Tower",
+                "Architectural Photography - Notre-Dame & Sainte-Chapelle",
+                "Street Photography Workshop - Montmartre Artists",
+                "Seine Reflections - River Photography at Blue Hour",
+                "Paris Rooftops - Aerial Photography Experience",
+                "Night Photography - Illuminated Paris Monuments"
+            ],
+            'spain': [
+                "Golden Hour Madrid - Royal Palace & Retiro Park Sunrise",
+                "Gaudí Architecture Photography - Sagrada Familia & Park Güell",
+                "Flamenco Street Photography - Seville & Granada Dancers",
+                "Alhambra Light & Shadow - Architectural Details Workshop",
+                "Spanish Landscapes - Andalusian Countryside & White Villages",
+                "Night Photography - Barcelona Gothic Quarter Illumination",
+                "Photography Portfolio Review - Spanish Light & Culture"
+            ],
+            'generic': [
+                f"Golden Hour {destination} - Best Sunrise Spots",
+                f"Architecture Photography - Historic Buildings",
+                f"Street Photography Workshop - Local Life Capture",
+                f"Scenic {destination} - Landscape Photography",
+                f"Portrait Photography - Local People & Culture",
+                f"Night Photography - {destination} After Dark",
+                f"Photography Portfolio Review & Best Shots"
+            ]
+        },
+        'budget': {
+            'paris': [
+                "Budget Paris Arrival - Free Walking Tour & Picnic",
+                "Free Museums Day - Permanent Collections",
+                "Budget Eats - Local Markets & Affordable Bistros",
+                "Free Parks & Gardens - Luxembourg & Tuileries",
+                "Budget Shopping - Flea Markets & Vintage Shops",
+                "Free Entertainment - Street Art & Performances"
+            ],
+            'spain': [
+                "Budget Madrid Arrival - Free Walking Tour & El Rastro Market",
+                "Free Museum Day - Prado & Reina Sofia Free Hours",
+                "Budget Tapas - Local Tabernas & Happy Hour Specials",
+                "Free Parks & Plazas - Retiro, Plaza Mayor & Street Performers",
+                "Budget Markets - El Rastro Flea Market & Local Bargains",
+                "Free Flamenco - Street Performances & Cultural Centers",
+                "Budget Farewell - Free Sunset Views & Public Celebrations"
+            ],
+            'generic': [
+                f"Budget {destination} Arrival - Free City Orientation",
+                f"Free Attractions & Museums in {destination}",
+                f"Budget Dining - Local Markets & Street Food",
+                f"Free Activities - Parks, Walks & Public Spaces",
+                f"Budget Shopping - Markets & Local Deals",
+                f"Free Entertainment & Local Events",
+                f"Budget Farewell - Free Activities & Memories"
+            ]
+        }
+    }
+    
+    # Get themes for the specific style and destination
+    style_themes = theme_templates.get(theme_focus, theme_templates['cultural'])
+    
+    # Try to find destination-specific themes with improved matching
+    for dest_key in style_themes:
+        if dest_key != 'generic':
+            if (dest_key in destination_lower or 
+                destination_lower in dest_key or
+                (dest_key == 'spain' and any(city in destination_lower for city in ['madrid', 'barcelona', 'seville', 'granada', 'valencia', 'bilbao'])) or
+                (destination_lower == 'spain' and dest_key in ['madrid', 'barcelona'])):
+                return style_themes[dest_key]
+    
+    # Fall back to generic themes for the style
+    return style_themes.get('generic', style_themes[list(style_themes.keys())[0]])
+
+def generate_progressive_daily_themes(destination, duration, user_interests, variation_style):
+    """Generate progressive themes that build on each other throughout the trip based on package variation style"""
+    
+    destination_lower = destination.lower()
+    
+    # Get style-specific theme templates
+    if variation_style == 'cultural-immersive':
+        theme_focus = 'cultural'
+    elif variation_style == 'culinary-focused':
+        theme_focus = 'culinary' 
+    elif variation_style == 'adventure-active':
+        theme_focus = 'adventure'
+    elif variation_style == 'luxury-premium':
+        theme_focus = 'luxury'
+    elif variation_style == 'photography-focused':
+        theme_focus = 'photography'
+    elif variation_style == 'budget-conscious':
+        theme_focus = 'budget'
+    else:
+        theme_focus = 'cultural'  # default
+    
+    # Debug logging
+    print(f"🎯 Generating themes for {destination} with style: {variation_style} -> {theme_focus}")
+    
+    # Check if destination has specific data
+    has_specific_data = any(place in destination.lower() for place in ['paris', 'tokyo', 'china', 'spain', 'madrid', 'barcelona'])
+    if not has_specific_data:
+        print(f"🌍 Using universal content generation for {destination}")
     
     # Base theme progression for different destinations
     if any(place in destination_lower for place in ['paris', 'france']):
@@ -1653,17 +2686,21 @@ def generate_progressive_daily_themes(destination, duration, user_interests, pac
             "Modern China Experience - 798 Art District & Tech Centers",
             "Ancient Wisdom & Farewell - Summer Palace & Reflection"
         ]
-    else:
-        # Generic progressive themes
+    elif any(place in destination_lower for place in ['spain', 'madrid', 'barcelona', 'seville', 'granada']):
+        # Default Spain themes (will be overridden by style-specific themes)
         base_themes = [
-            f"{destination} First Impressions",
-            f"Cultural Heart of {destination}",
-            f"Local Life in {destination}",
-            f"Hidden Gems of {destination}",
-            f"Culinary Journey",
-            f"Active {destination}",
-            f"Farewell {destination}"
+            "Spanish Heritage Arrival - Royal Madrid & Plaza Mayor",
+            "Moorish Legacy Discovery - Alhambra & Islamic Architecture", 
+            "Spanish Art & Culture - Prado Museum & Picasso Trail",
+            "Culinary Spain Experience - Tapas, Paella & Regional Cuisine",
+            "Sacred Spain Journey - Cathedrals & Santiago Pilgrimage",
+            "Modern Spanish Innovation - Guggenheim Bilbao & Contemporary Art",
+            "Spanish Traditions Farewell - Flamenco & Cultural Celebration"
         ]
+    else:
+        # Use style-specific theme generator
+        base_themes = generate_style_specific_themes(destination, theme_focus)
+        print(f"📋 Generated {len(base_themes)} themes for {destination} ({theme_focus}): {base_themes[:2]}...")
     
     # Ensure we have enough themes for the duration
     # If duration is longer than available themes, cycle through themes
@@ -3169,9 +4206,28 @@ def package_creation_page():
             profile['travel_style'] = st.selectbox("Travel Style", 
                 ['cultural explorer', 'adventure seeker', 'luxury traveler', 'family friendly'], 
                 index=['cultural explorer', 'adventure seeker', 'luxury traveler', 'family friendly'].index(profile['travel_style']))
-            profile['budget_preference'] = st.selectbox("Budget Preference", 
-                ['budget', 'moderate', 'luxury'], 
-                index=['budget', 'moderate', 'luxury'].index(profile['budget_preference']))
+            # Enhanced budget preference with detailed options
+            budget_options = {
+                'ultra_budget': 'Ultra Budget ($300-600/day)',
+                'budget': 'Budget ($600-1000/day)', 
+                'moderate': 'Moderate ($1000-2500/day)',
+                'premium': 'Premium ($2500-4000/day)',
+                'luxury': 'Luxury ($4000-7000/day)',
+                'ultra_luxury': 'Ultra Luxury ($7000+/day)'
+            }
+            
+            # Find current selection or default to moderate
+            current_budget = profile.get('budget_preference', 'moderate')
+            if current_budget not in budget_options:
+                current_budget = 'moderate'
+            
+            selected_budget_key = st.selectbox(
+                "Budget Preference", 
+                options=list(budget_options.keys()),
+                format_func=lambda x: budget_options[x],
+                index=list(budget_options.keys()).index(current_budget)
+            )
+            profile['budget_preference'] = selected_budget_key
             
             # Interests (multi-select)
             all_interests = ['cultural experiences', 'local cuisine', 'photography', 'art galleries', 
@@ -3183,10 +4239,22 @@ def package_creation_page():
             profile['dietary_restrictions'] = st.multiselect("Dietary Restrictions", diet_options, default=profile.get('dietary_restrictions', []))
         
         # Display current profile
+        # Budget options for display
+        budget_display_options = {
+            'ultra_budget': 'Ultra Budget ($300-600/day)',
+            'budget': 'Budget ($600-1000/day)', 
+            'moderate': 'Moderate ($1000-2500/day)',
+            'premium': 'Premium ($2500-4000/day)',
+            'luxury': 'Luxury ($4000-7000/day)',
+            'ultra_luxury': 'Ultra Luxury ($7000+/day)'
+        }
+        
+        budget_display = budget_display_options.get(profile['budget_preference'], profile['budget_preference'].title())
+        
         st.markdown(f"""
         **🧳 {profile['name']}** ({profile['age']} years)  
         **Style:** {profile['travel_style'].title()}  
-        **Budget:** {profile['budget_preference'].title()}  
+        **Budget:** {budget_display}  
         **Interests:** {', '.join(profile['interests'][:3])}{'...' if len(profile['interests']) > 3 else ''}
         """)
     
@@ -3214,10 +4282,20 @@ def package_creation_page():
             start_date = st.date_input("📅 Start Date", datetime.now() + timedelta(days=14))
             duration = st.number_input("📅 Duration (days)", 1, 21, 7)
         
-        # Budget selection
-        budget = st.selectbox("💰 Budget Range", 
-            ["Budget ($500-1000)", "Moderate ($1000-2500)", "Luxury ($2500+)"],
-            index=1)
+        # Enhanced budget selection with comprehensive options
+        enhanced_budget_options = [
+            "💸 Ultra Budget ($300-600/day) - Hostels, street food, public transport",
+            "💰 Budget ($600-1000/day) - Budget hotels, local restaurants, basic tours", 
+            "💳 Moderate ($1000-2500/day) - 3-4★ hotels, mid-range dining, guided tours",
+            "💎 Premium ($2500-4000/day) - 4-5★ hotels, fine dining, private experiences",
+            "🏆 Luxury ($4000-7000/day) - 5★ resorts, Michelin dining, VIP services",
+            "👑 Ultra Luxury ($7000+/day) - Presidential suites, private jets, exclusive access"
+        ]
+        
+        budget = st.selectbox("💰 Budget Range", enhanced_budget_options, index=2)
+        
+        # Extract budget category for processing
+        budget_category = budget.split('(')[0].strip().replace('💸 ', '').replace('💰 ', '').replace('💳 ', '').replace('💎 ', '').replace('🏆 ', '').replace('👑 ', '')
     
     with col2:
         st.markdown("### 🎨 **Package Preferences**")
@@ -3264,33 +4342,40 @@ def package_creation_page():
                 # Generate 4 different package variations based on different styles
                 packages = []
                 
-                # Define 4 diverse package types
+                # Define 4 diverse package types with unique identifiers
                 package_variations = [
                     {
                         'style_override': 'cultural-immersive',
                         'budget_modifier': 0,
                         'title_suffix': 'Cultural Heritage Explorer',
-                        'focus_override': 'Deep cultural immersion with historical sites and local traditions'
+                        'focus_override': 'Deep cultural immersion with historical sites and local traditions',
+                        'unique_id': 'cultural'
                     },
                     {
                         'style_override': 'culinary-focused', 
                         'budget_modifier': 0.1,
                         'title_suffix': 'Culinary Discovery Journey',
-                        'focus_override': 'Authentic local cuisine and cooking experiences'
+                        'focus_override': 'Authentic local cuisine and cooking experiences',
+                        'unique_id': 'culinary'
                     },
                     {
                         'style_override': 'luxury-premium' if budget != "Budget ($500-1000)" else 'photography-focused',
                         'budget_modifier': 0.2,
                         'title_suffix': 'Premium Luxury Experience' if budget != "Budget ($500-1000)" else 'Photography Expedition',
-                        'focus_override': 'High-end accommodations and exclusive experiences' if budget != "Budget ($500-1000)" else 'Stunning photography opportunities and scenic locations'
+                        'focus_override': 'High-end accommodations and exclusive experiences' if budget != "Budget ($500-1000)" else 'Stunning photography opportunities and scenic locations',
+                        'unique_id': 'luxury_or_photo'
                     },
                     {
                         'style_override': 'budget-conscious' if budget == "Luxury ($2500+)" else 'adventure-active',
                         'budget_modifier': -0.1 if budget == "Luxury ($2500+)" else 0.05,
                         'title_suffix': 'Smart Budget Explorer' if budget == "Luxury ($2500+)" else 'Adventure & Active Explorer',
-                        'focus_override': 'Maximum value with authentic local experiences' if budget == "Luxury ($2500+)" else 'Outdoor adventures and active experiences'
+                        'focus_override': 'Maximum value with authentic local experiences' if budget == "Luxury ($2500+)" else 'Outdoor adventures and active experiences',
+                        'unique_id': 'budget_or_adventure'
                     }
                 ]
+                
+                # Clear existing packages to prevent duplicates
+                packages = []
                 
                 for i, variation in enumerate(package_variations):
                     # Create modified profile for package variation
@@ -3309,20 +4394,31 @@ def package_creation_page():
                     
                     # Generate package with specific style
                     package = generate_personalized_package(
-                        modified_prompt, varied_profile, destination, duration, travelers, budget
+                        modified_prompt, varied_profile, destination, duration, travelers, budget, variation['style_override']
                     )
                     
-                    # Override title and focus with variation specifics
+                    # Create unique package ID and title
+                    package['id'] = f"pkg_{variation['unique_id']}_{len(packages) + 1}"
                     package['title'] = f"{destination} {variation['title_suffix']}"
                     package['focus'] = variation['focus_override']
                     package['variation_type'] = variation['style_override']
                     
-                    packages.append(package)
+                    # Ensure no duplicate packages by checking existing titles
+                    existing_titles = [p['title'] for p in packages]
+                    if package['title'] not in existing_titles:
+                        packages.append(package)
                 
-                # Store generated packages
-                st.session_state.generated_packages = packages
+                # Store generated packages (ensure no duplicates)
+                unique_packages = []
+                seen_titles = set()
+                for package in packages:
+                    if package['title'] not in seen_titles:
+                        unique_packages.append(package)
+                        seen_titles.add(package['title'])
                 
-                st.success("🎉 Successfully generated 4 unique personalized packages for you!")
+                st.session_state.generated_packages = unique_packages
+                
+                st.success(f"🎉 Successfully generated {len(unique_packages)} unique personalized packages for you!")
                 st.info("💡 Each package offers a different travel experience - choose the one that matches your mood!")
                 
                 # Force rerun to display packages
@@ -3361,27 +4457,31 @@ def enhance_prompt_for_variation(original_prompt, style_override):
     return style_enhancements.get(style_override, original_prompt)
 
 def display_package_card(package, index):
-    """Display a clickable package card"""
+    """Display a clickable package card with brief titles"""
     
     pricing = package['pricing']
     
-    # Package card with attractive styling
+    # Use the actual package variation type as brief title
+    brief_title = package.get('variation_type', 'Unique Experience').replace('-', ' ').title()
+    
+    # Package card with proper dark text styling for visibility
     st.markdown(f"""
-    <div class="package-card" style="border-left-color: {'#28a745' if index == 0 else '#007bff' if index == 1 else '#fd7e14'};">
-        <h4>{package['title']}</h4>
-        <p><strong>🎯 Focus:</strong> {package['focus']}</p>
-        <p><strong>📅 Duration:</strong> {package['duration']} days</p>
-        <p><strong>👥 Travelers:</strong> {package['travelers']}</p>
-        <p><strong>✈️ Flights:</strong> {len(package['flights'])} options</p>
-        <p><strong>🏨 Hotels:</strong> {len(package['hotels'])} recommendations</p>
-        <p><strong>🍽️ Restaurants:</strong> {len(package['restaurants'])} curated spots</p>
-        <p><strong>🎯 Activities:</strong> {len(package['activities'])} experiences</p>
-        <p><strong>🌟 Local Gems:</strong> {len(package['local_experiences'])} unique experiences</p>
+    <div class="package-card" style="border-left-color: {'#28a745' if index == 0 else '#007bff' if index == 1 else '#fd7e14'}; color: #333333;">
+        <h4 style="color: #2c3e50; margin-bottom: 1rem;">{package['title']}</h4>
+        <p style="color: #666; font-style: italic; margin: 0.5rem 0;"><strong>{brief_title}</strong></p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>🎯 Focus:</strong> {package['focus']}</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>📅 Duration:</strong> {package['duration']} days</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>👥 Travelers:</strong> {package['travelers']}</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>✈️ Flights:</strong> {len(package['flights'])} options</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>🏨 Hotels:</strong> {len(package['hotels'])} recommendations</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>🍽️ Restaurants:</strong> {len(package['restaurants'])} curated spots</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>🎯 Activities:</strong> {len(package['activities'])} experiences</p>
+        <p style="color: #333; margin: 0.4rem 0;"><strong>🌟 Local Gems:</strong> {len(package['local_experiences'])} unique experiences</p>
         <br>
-        <div class="price-tag" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">
+        <div class="price-tag" style="font-size: 1.1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; text-align: center;">
             ${pricing['total_cost']:,.0f} total
         </div>
-        <p style="text-align: center; margin-top: 0.5rem;">
+        <p style="text-align: center; margin-top: 0.5rem; color: #666;">
             <small>${pricing['cost_per_person']:,.0f} per person</small>
         </p>
     </div>
@@ -3764,29 +4864,91 @@ def display_local_experiences(experiences):
         """, unsafe_allow_html=True)
 
 def display_pricing_breakdown(pricing):
-    """Display detailed pricing breakdown"""
+    """Display detailed pricing breakdown with attractive visualization using pure Streamlit components"""
     
-    col1, col2 = st.columns(2)
+    # Title with custom styling
+    st.markdown("""
+    <div style="
+        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 25px;
+        color: white;
+        margin: 1rem 0;
+        text-align: center;
+    ">
+        <h2 style="margin: 0; color: white;">💰 Investment Breakdown</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Main content using Streamlit columns
+    col1, col2 = st.columns([1, 1])
     
     with col1:
-        st.markdown("### 💰 **Cost Breakdown**")
-        st.markdown(f"""
-        - **✈️ Flights:** ${pricing['flights']:,.0f}
-        - **🏨 Hotels:** ${pricing['hotels']:,.0f}
-        - **🍽️ Restaurants:** ${pricing['restaurants']:,.0f}
-        - **🎯 Activities:** ${pricing['activities']:,.0f}
-        - **📊 Taxes:** ${pricing['taxes']:,.0f}
-        - **🔧 Service Fee:** ${pricing['service_fee']:,.0f}
-        """)
+        st.markdown("### 📊 Cost Components")
+        
+        # Calculate percentages for visual representation
+        total_base = pricing['base_cost']
+        components = [
+            ("✈️ Flights", pricing['flights'], (pricing['flights'] / total_base) * 100),
+            ("🏨 Hotels", pricing['hotels'], (pricing['hotels'] / total_base) * 100),
+            ("🍽️ Restaurants", pricing['restaurants'], (pricing['restaurants'] / total_base) * 100),
+            ("🎯 Activities", pricing['activities'], (pricing['activities'] / total_base) * 100)
+        ]
+        
+        # Display each component with progress bar
+        for name, amount, percentage in components:
+            col_name, col_amount = st.columns([2, 1])
+            with col_name:
+                st.write(name)
+            with col_amount:
+                st.write(f"**${amount:,.0f}**")
+            
+            # Progress bar
+            progress_value = min(percentage / 100, 1.0)
+            st.progress(progress_value)
+            st.write("")  # Add spacing
     
     with col2:
-        st.markdown("### 📊 **Summary**")
+        # Total Investment Card
         st.markdown(f"""
-        - **Subtotal:** ${pricing['base_cost']:,.0f}
-        - **Total Cost:** ${pricing['total_cost']:,.0f}
-        - **Per Person:** ${pricing['cost_per_person']:,.0f}
-        - **Daily Average:** ${pricing['daily_average']:,.0f}
-        """)
+        <div style="
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: white;
+        ">
+            <h3 style="margin: 0; color: white;">Total Investment</h3>
+            <h1 style="margin: 1rem 0; font-size: 3rem; color: white;">
+                ${pricing['total_cost']:,.0f}
+            </h1>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Per Person and Daily Average
+        metric_col1, metric_col2 = st.columns(2)
+        with metric_col1:
+            st.metric(
+                label="👥 Per Person",
+                value=f"${pricing['cost_per_person']:,.0f}",
+                delta=None
+            )
+        
+        with metric_col2:
+            st.metric(
+                label="📅 Daily Average", 
+                value=f"${pricing['daily_average']:,.0f}",
+                delta=None
+            )
+        
+        # Additional Costs
+        st.markdown("#### Additional Costs")
+        st.write(f"📊 **Taxes & Fees:** ${pricing['taxes']:,.0f}")
+        st.write(f"🔧 **Service Fee:** ${pricing['service_fee']:,.0f}")
+    
+    # Add some spacing
+    st.markdown("<br>", unsafe_allow_html=True)
 
 def book_complete_package(package):
     """Enhanced intelligent booking system for complete travel package"""
@@ -4535,121 +5697,91 @@ def analytics_dashboard():
         fig_acquisition.update_layout(height=400)
         st.plotly_chart(fig_acquisition, use_container_width=True)
     
-    # Financial projections
-    st.markdown("### 💰 **Financial Projections & Investor Returns**")
+    # Platform overview for investors
+    st.markdown("### 🌟 **Platform Overview**")
+    
+    st.markdown("""
+    **Comprehensive Travel Management Solution**
+    
+    Our platform represents a modern approach to travel planning and booking, combining 
+    advanced technology with user-centric design to deliver exceptional travel experiences.
+    """)
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         <div class="roi-card">
-            <h4>3-Year Financial Forecast</h4>
-            <p><strong>Year 1 (2025):</strong></p>
-            <p>• Revenue: $6.2M (145% growth)</p>
-            <p>• Gross Margin: 71%</p>
-            <p>• EBITDA: $1.8M (29%)</p>
+            <h4>Everything You Need in One Place</h4>
+            <p>We bring together all your travel needs under one roof. From finding the perfect flight and booking your ideal hotel to discovering amazing restaurants and creating custom itineraries that match your style, everything is seamlessly integrated. Our dedicated support team is available around the clock to help whenever you need assistance.</p>
             
-            <p><strong>Year 2 (2026):</strong></p>
-            <p>• Revenue: $15.8M (155% growth)</p>
-            <p>• Gross Margin: 73%</p>
-            <p>• EBITDA: $5.5M (35%)</p>
-            
-            <p><strong>Year 3 (2027):</strong></p>
-            <p>• Revenue: $38.4M (143% growth)</p>
-            <p>• Gross Margin: 75%</p>
-            <p>• EBITDA: $15.4M (40%)</p>
+            <p>Experience travel planning like never before with our intuitive platform that works beautifully on any device. Get personalized recommendations based on your preferences, complete your bookings with just a few simple clicks, and enjoy the confidence that comes with having everything organized in one convenient location.</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
         <div class="competitive-advantage">
-            <h4>Competitive Benchmarking</h4>
-            <p><strong>vs. Traditional OTAs:</strong></p>
-            <p>• 23% higher average transaction value</p>
-            <p>• 67% lower customer acquisition cost</p>
-            <p>• 89% higher customer retention</p>
+            <h4>Built for Your Peace of Mind</h4>
+            <p>Our advanced artificial intelligence works behind the scenes to understand your travel preferences and suggest trips that perfectly match what you're looking for. You'll always have access to the most current prices and availability, powered by a robust system designed for reliability and speed.</p>
             
-            <p><strong>vs. AI Travel Startups:</strong></p>
-            <p>• 156% faster revenue growth</p>
-            <p>• 34% higher gross margins</p>
-            <p>• 78% more comprehensive platform</p>
-            
-            <p><strong>Market Position:</strong></p>
-            <p>🥇 #1 in AI travel personalization</p>
-            <p>🥈 #2 in multi-service integration</p>
+            <p>Your security is our top priority. Every transaction is protected by enterprise-grade encryption, your personal information remains completely private and secure, and our lightning-fast booking system ensures you never miss out on great deals while maintaining the highest standards of data protection.</p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Unit economics
-    st.markdown("### 📊 **Unit Economics & Business Model Validation**")
+    # Platform strengths
+    st.markdown("### � **Key Performance Indicators**")
     
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.markdown("""
-        **Customer Acquisition**
-        - CAC: $34
-        - Payback: 4.2 months
-        - Channels: 6 active
-        - Conversion: 3.4%
+        **Designed Around You**
+        
+        Every aspect of our platform is built with you in mind. Navigate effortlessly through our clean, intuitive interface that adapts beautifully to any screen size, ensuring accessibility for all users across every device.
         """)
     
     with col2:
         st.markdown("""
-        **Customer Lifetime Value**
-        - LTV: $1,247
-        - Avg. Lifespan: 28 months
-        - Monthly Churn: 2.1%
-        - Repeat Rate: 89%
+        **Quality You Can Trust**
+        
+        We cover destinations worldwide with consistent, reliable service that puts your satisfaction first. Our commitment to continuous improvement means your experience gets better every time you travel with us.
         """)
     
     with col3:
         st.markdown("""
-        **Transaction Metrics**
-        - Avg. Transaction: $347
-        - Take Rate: 12.5%
-        - Frequency: 3.2x/year
-        - Basket Size: +23% vs. market
+        **Built to Last**
+        
+        Our modern, secure architecture processes your requests efficiently while keeping your data completely protected. Count on our reliable systems to be there when you need them most.
         """)
     
     with col4:
         st.markdown("""
-        **Operational Efficiency**
-        - Gross Margin: 68%
-        - EBITDA Margin: 29%
-        - Tech Spend: 23% of revenue
-        - Automation: 78% of processes
+        **Always Evolving**
+        
+        We integrate the latest AI technology and continuously develop new features that adapt to changing travel needs, ensuring you always have access to the most advanced travel planning tools.
         """)
     
-    # Investment terms showcase
-    st.markdown("### 🎯 **Investment Opportunity Snapshot**")
+    # Investment opportunity overview
+    st.markdown("### 🤝 **Partnership Opportunity**")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         <div class="market-size">
-            <h4>Series A Funding</h4>
-            <p><strong>$5M Investment Round</strong></p>
-            <p>• Pre-money valuation: $25M</p>
-            <p>• Equity offered: 20%</p>
-            <p>• Projected IRR: 45-65%</p>
-            <p>• Target exit: 5-7 years</p>
-            <p>• Minimum check: $250K</p>
+            <h4>Investment Highlights</h4>
+            <p><strong>Growth-Stage Opportunity</strong></p>
+            <p>We have established a proven business model with strong market traction, backed by an experienced team that understands the travel industry inside and out. Our clear expansion path leverages advanced technology differentiation to capture emerging opportunities in the rapidly evolving travel market.</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
         <div class="success-story">
-            <h4>Exit Strategy & Returns</h4>
-            <p><strong>Multiple Exit Paths</strong></p>
-            <p>• IPO potential: $500M+ revenue</p>
-            <p>• Strategic buyers: Expedia, Booking.com</p>
-            <p>• Comparable multiples: 8-15x revenue</p>
-            <p>• Projected valuation: $200M-$500M</p>
-            <p>• Expected MOIC: 8-20x</p>
+            <h4>Strategic Value</h4>
+            <p><strong>Long-term Vision</strong></p>
+            <p>Our platform is positioned to achieve market leadership through sustainable competitive advantages and multiple growth opportunities. With strong operational efficiency and flexible exit strategies, we offer investors a compelling long-term value proposition in the thriving travel technology sector.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -4840,6 +5972,70 @@ def calculate_package_price(duration, travelers, budget):
 # Main application navigation
 def main():
     """Main application with enhanced navigation"""
+    
+    # Check for payment success callback from Stripe
+    query_params = st.query_params
+    if 'payment' in query_params:
+        payment_status = query_params['payment']
+        if payment_status == 'success':
+            session_id = query_params.get('session_id')
+            if session_id and ENHANCED_FEATURES_AVAILABLE:
+                try:
+                    # Handle successful payment
+                    payment_processor = EnhancedPaymentProcessor()
+                    success_result = payment_processor.handle_payment_success(session_id)
+                    
+                    if success_result['success'] and success_result['payment_confirmed']:
+                        payment_processor.display_payment_success(success_result['confirmation_details'])
+                        
+                        # Show booking details
+                        st.markdown("---")
+                        st.markdown("### 📋 **Booking Confirmation Details**")
+                        
+                        confirmation = success_result['confirmation_details']
+                        booking_meta = confirmation.get('booking_metadata', {})
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.markdown(f"""
+                            **Booking ID:** {booking_meta.get('booking_id', 'N/A')}  
+                            **Payment ID:** {confirmation['payment_id']}  
+                            **Amount:** ${confirmation['amount_paid']:,.2f} {confirmation['currency']}  
+                            **Status:** ✅ Confirmed
+                            """)
+                        
+                        with col2:
+                            st.markdown(f"""
+                            **Customer:** {confirmation['customer_email']}  
+                            **Date:** {confirmation['processed_at'].strftime('%Y-%m-%d %H:%M')}  
+                            **Method:** Stripe Secure Checkout  
+                            **Receipt:** Check your email
+                            """)
+                        
+                        st.success("🎉 Your travel booking is confirmed! Check your email for detailed itinerary.")
+                        return  # Exit early to show only confirmation
+                        
+                    else:
+                        st.error(f"❌ Payment verification failed: {success_result.get('error', 'Unknown error')}")
+                        
+                except Exception as e:
+                    st.error(f"❌ Error processing payment confirmation: {str(e)}")
+                    
+            else:
+                st.success("🎉 Payment Successful!")
+                if session_id:
+                    st.info(f"Session ID: {session_id}")
+                    
+        elif payment_status == 'cancelled':
+            st.warning("❌ Payment Cancelled")
+            st.info("Your payment was cancelled. You can try again anytime.")
+            
+            # Clear any stored payment session data
+            if 'stripe_session_id' in st.session_state:
+                del st.session_state.stripe_session_id
+            if 'booking_id' in st.session_state:
+                del st.session_state.booking_id
     
     # Initialize current page
     if 'current_page' not in st.session_state:

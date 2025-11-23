@@ -56,7 +56,7 @@ TRAVEL_TOOLS = [
     search_safety_info
 ]
 
-BOOKING_TOOLS = [
+OOKING_TOOLS = [
     create_booking_tool,
     payment_processing_tool,
     booking_confirmation_tool,

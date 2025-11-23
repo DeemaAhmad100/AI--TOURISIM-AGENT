@@ -507,10 +507,10 @@ class EnhancedPaymentProcessor:
         
         return False
     
-    def _process_payment_simulation(self, payment_details: Dict,
-                                  package: Dict, total_amount: float) -> bool:
+    def _process_real_stripe_payment(self, payment_details: Dict,
+                                   package: Dict, total_amount: float) -> bool:
         """
-        Simulate payment processing with realistic workflow
+        Process real Stripe payment with checkout session
         
         Args:
             payment_details: Payment method details
@@ -521,45 +521,170 @@ class EnhancedPaymentProcessor:
             Boolean indicating success
         """
         
-        # Simulate payment processing
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-        
-        import time
-        
-        # Processing steps
-        steps = [
-            ("🔐 Validating payment method...", 0.2),
-            ("💳 Processing payment...", 0.4),
-            ("🛡️ Security verification...", 0.6),
-            ("📋 Creating booking record...", 0.8),
-            ("✅ Finalizing confirmation...", 1.0)
-        ]
-        
-        for step_text, progress in steps:
-            status_text.text(step_text)
-            progress_bar.progress(progress)
-            time.sleep(1)  # Simulate processing time
-        
-        # Generate payment confirmation
-        payment_id = f"PAY_{datetime.now().strftime('%Y%m%d')}_{uuid.uuid4().hex[:8].upper()}"
-        
-        # Store payment details in session
-        st.session_state.payment_confirmation = {
-            "payment_id": payment_id,
-            "amount": total_amount,
-            "method": payment_details['method'],
-            "status": "completed",
-            "processed_at": datetime.now(),
-            "package": package,
-            "newsletter_consent": st.session_state.get('newsletter_consent', False)
-        }
-        
-        # Clear progress indicators
-        progress_bar.empty()
-        status_text.empty()
-        
-        # Show success message
+        try:
+            # Import Stripe service
+            from src.api_integration.stripe.stripe_service import StripeService
+            
+            # Initialize Stripe
+            stripe_service = StripeService()
+            
+            # Prepare customer data
+            customer_email = st.session_state.get('user_email', payment_details.get('email', 'customer@example.com'))
+            customer_name = payment_details.get('cardholder_name', payment_details.get('account_holder', 'Customer'))
+            
+            # Create or get customer
+            customer_result = stripe_service.create_customer(
+                email=customer_email,
+                name=customer_name,
+                metadata={
+                    'package_title': package['title'],
+                    'destination': package['destination'],
+                    'created_via': 'ai_travel_platform'
+                }
+            )
+            
+            if not customer_result['success']:
+                st.error(f"❌ Error creating customer: {customer_result['error']}")
+                return False
+            
+            customer_id = customer_result['customer_id']
+            
+            # Generate unique booking ID
+            booking_id = f"BOOK_{datetime.now().strftime('%Y%m%d')}_{uuid.uuid4().hex[:8].upper()}"
+            
+            # Prepare booking details for Stripe
+            booking_details = {
+                'booking_id': booking_id,
+                'title': package['title'],
+                'destination': package['destination'],
+                'duration': package['duration'],
+                'travelers': package['travelers'],
+                'user_id': st.session_state.get('user_id', 'guest')
+            }
+            
+            # Create Stripe Checkout Session
+            session_result = stripe_service.create_checkout_session(
+                amount=int(total_amount * 100),  # Convert to cents
+                currency='usd',
+                customer_id=customer_id,
+                booking_details=booking_details,
+                success_url=f"http://localhost:8501?payment=success&session_id={{CHECKOUT_SESSION_ID}}",
+                cancel_url="http://localhost:8501?payment=cancelled"
+            )
+            
+            if not session_result['success']:
+                st.error(f"❌ Error creating checkout session: {session_result['error']}")
+                return False
+            
+            # Store session info
+            st.session_state.stripe_session_id = session_result['session_id']
+            st.session_state.booking_id = booking_id
+            st.session_state.payment_amount = total_amount
+            
+            # Show Stripe checkout redirect
+            st.success("🔐 **Redirecting to Secure Stripe Checkout...**")
+            
+            st.markdown(f"""
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 12px; text-align: center; margin: 1rem 0; color: white;">
+                <h2>🔒 Secure Payment Processing</h2>
+                <p>You will be redirected to Stripe's secure checkout page</p>
+                <p><strong>Amount:</strong> ${total_amount:,.2f}</p>
+                <p><strong>Booking ID:</strong> {booking_id}</p>
+                <br>
+                <a href="{session_result['checkout_url']}" target="_blank" 
+                   style="background: #28a745; color: white; padding: 1rem 2rem; 
+                          border-radius: 8px; text-decoration: none; font-weight: bold;
+                          display: inline-block; margin: 1rem;">
+                    🚀 Complete Payment with Stripe
+                </a>
+                <br><br>
+                <small>🔐 Your payment is processed securely by Stripe</small>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Auto-redirect with JavaScript
+            st.markdown(f"""
+            <script>
+                setTimeout(function() {{
+                    window.open('{session_result['checkout_url']}', '_blank');
+                }}, 3000);
+            </script>
+            """, unsafe_allow_html=True)
+            
+            st.info("💡 **Next Steps:**\n1. Complete payment on Stripe's secure page\n2. You'll be redirected back automatically\n3. Your booking confirmation will be ready!")
+            
+            return True
+            
+        except Exception as e:
+            st.error(f"❌ Payment processing error: {str(e)}")
+            return False
+    
+    def _process_payment_simulation(self, payment_details: Dict,
+                                  package: Dict, total_amount: float) -> bool:
+        """
+        Legacy simulation - now calls real Stripe payment
+        """
+        return self._process_real_stripe_payment(payment_details, package, total_amount)
+    
+    def handle_payment_success(self, session_id: str) -> Dict[str, Any]:
+        """
+        Handle successful payment from Stripe webhook/redirect
+        """
+        try:
+            from src.api_integration.stripe.stripe_service import StripeService
+            
+            stripe_service = StripeService()
+            
+            # Retrieve session details
+            session_result = stripe_service.retrieve_checkout_session(session_id)
+            
+            if not session_result['success']:
+                return {
+                    "success": False,
+                    "error": "Could not retrieve payment session"
+                }
+            
+            session = session_result['session']
+            
+            # Check payment status
+            if session.payment_status == 'paid':
+                # Generate confirmation
+                payment_id = f"PAY_{datetime.now().strftime('%Y%m%d')}_{session_id[:8].upper()}"
+                
+                # Store confirmation details
+                confirmation_details = {
+                    "payment_id": payment_id,
+                    "stripe_session_id": session_id,
+                    "amount_paid": session.amount_total / 100,  # Convert from cents
+                    "currency": session.currency.upper(),
+                    "customer_email": session.customer_details.email,
+                    "payment_status": session.payment_status,
+                    "processed_at": datetime.now(),
+                    "booking_metadata": session.metadata
+                }
+                
+                return {
+                    "success": True,
+                    "payment_confirmed": True,
+                    "confirmation_details": confirmation_details
+                }
+            else:
+                return {
+                    "success": False,
+                    "payment_confirmed": False,
+                    "status": session.payment_status
+                }
+                
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+    def display_payment_success(self, confirmation_details: Dict) -> None:
+        """
+        Display payment success confirmation
+        """
         st.balloons()
         
         st.success("🎉 **Payment Successful!**")
@@ -567,11 +692,16 @@ class EnhancedPaymentProcessor:
         st.markdown(f"""
         <div style="background: #e8f5e8; padding: 2rem; border-radius: 12px; text-align: center; margin: 1rem 0;">
             <h2 style="color: #2E7D32;">✅ Payment Confirmed!</h2>
-            <h3 style="color: #1B5E20;">Payment ID: {payment_id}</h3>
+            <h3 style="color: #1B5E20;">Payment ID: {confirmation_details['payment_id']}</h3>
             <p style="color: #388E3C; margin: 1rem 0;">Your booking is now confirmed and being processed</p>
-            <p><strong>Amount Charged:</strong> ${total_amount:,.2f}</p>
-            <p><strong>Processing Time:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+            <p><strong>Amount Charged:</strong> ${confirmation_details['amount_paid']:,.2f} {confirmation_details['currency']}</p>
+            <p><strong>Processing Time:</strong> {confirmation_details['processed_at'].strftime('%Y-%m-%d %H:%M:%S')}</p>
+            <p><strong>Customer:</strong> {confirmation_details['customer_email']}</p>
+            <br>
+            <p style="color: #2E7D32; font-weight: bold;">📧 Confirmation email sent to your inbox</p>
+            <p style="color: #2E7D32; font-weight: bold;">📱 Booking details saved to your account</p>
         </div>
         """, unsafe_allow_html=True)
         
-        return True
+        # Store in session for further use
+        st.session_state.payment_confirmation = confirmation_details

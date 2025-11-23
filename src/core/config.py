@@ -42,9 +42,15 @@ class Config:
     SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
     
     # Stripe Payment Configuration
-    STRIPE_PUBLIC_KEY: str = os.getenv("STRIPE_PUBLIC_KEY", "")
+    STRIPE_PUBLISHABLE_KEY: str = os.getenv("STRIPE_PUBLISHABLE_KEY", "")
+    STRIPE_PUBLIC_KEY: str = os.getenv("STRIPE_PUBLIC_KEY", "")  # Legacy support
     STRIPE_SECRET_KEY: str = os.getenv("STRIPE_SECRET_KEY", "")
     STRIPE_WEBHOOK_SECRET: str = os.getenv("STRIPE_WEBHOOK_SECRET", "")
+    
+    # Payment processing settings
+    PAYMENT_CURRENCY: str = os.getenv("PAYMENT_CURRENCY", "usd")
+    PAYMENT_SUCCESS_URL: str = os.getenv("PAYMENT_SUCCESS_URL", "http://localhost:8501?payment=success&session_id={CHECKOUT_SESSION_ID}")
+    PAYMENT_CANCEL_URL: str = os.getenv("PAYMENT_CANCEL_URL", "http://localhost:8501?payment=cancelled")
     
     # Google APIs Configuration
     GOOGLE_MAPS_API_KEY: str = os.getenv("GOOGLE_MAPS_API_KEY", "")

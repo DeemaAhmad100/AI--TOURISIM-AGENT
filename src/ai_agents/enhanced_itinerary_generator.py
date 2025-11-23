@@ -424,11 +424,14 @@ class EnhancedItineraryGenerator:
                     prices = [int(x) for x in price_range.replace('$', '').replace('€', '').split('-')]
                     activity_cost += sum(prices) / len(prices) if prices else 30
         
-        # Budget adjustment
+        # Enhanced budget adjustment for 6-tier system
         budget_multiplier = {
-            'budget': 0.7,
-            'moderate': 1.0, 
-            'luxury': 1.5
+            'ultra_budget': 0.5,    # 50% of base cost - hostels, street food
+            'budget': 0.7,          # 70% of base cost - budget hotels, local food
+            'moderate': 1.0,        # 100% base cost - mid-range everything
+            'premium': 1.4,         # 140% of base cost - 4-star hotels, fine dining
+            'luxury': 1.8,          # 180% of base cost - 5-star resorts, exclusive
+            'ultra_luxury': 2.5     # 250% of base cost - private jets, presidential suites
         }.get(profile.get('budget_preference', 'moderate'), 1.0)
         
         total_cost = (base_cost + activity_cost) * budget_multiplier

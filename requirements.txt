@@ -13,6 +13,9 @@ supabase==2.16.0
 python-dotenv==1.1.0
 requests==2.31.0
 
+# Payment Processing
+stripe==11.0.0
+
 # PDF Generation and Documents
 reportlab==4.0.4
 pypdf2==3.0.1

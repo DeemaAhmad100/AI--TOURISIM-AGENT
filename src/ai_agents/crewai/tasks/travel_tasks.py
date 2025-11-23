@@ -107,6 +107,7 @@ def create_enhanced_travel_tasks(destination: str, travel_dates: str, duration_d
                                preferences: Dict, budget: str) -> List[Task]:
     """Create enhanced travel planning tasks with AI intelligence"""
     
+
     tools = get_all_tools()
     
     enhanced_research_task = Task(
